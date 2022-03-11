@@ -1,0 +1,37 @@
+# [weather]
+# command=[ -z "$button" ] && ~/.config/i3blocks/scripts/weather.sh || ~/.config/i3blocks/scripts/weather_notification.sh && ~/.config/i3blocks/scripts/weather.sh 
+# interval=1800
+
+[pacman-updates]
+command=~/.config/i3blocks/scripts/pacmanupdates.sh
+interval=1800
+
+[wifi-stats]
+command=~/.config/i3blocks/scripts/wifi.sh
+interval=2
+
+[battery]
+command=~/.config/i3blocks/scripts/battery.sh
+interval=5
+
+[volume]
+command=~/.config/i3blocks/scripts/volume.sh
+color=#a6eca8
+interval=once
+signal=10
+
+[date]
+command=echo " `date +'%a, %d %b %Y'`"
+color="#aec6cf"
+interval=60
+
+[time]
+command=echo " `date +'%H:%M:%S'`"
+color=#dddddd
+interval=1
+
+[powermenu]
+align=center
+min_width=30
+command=~/.config/i3blocks/scripts/powermenu.sh
+interval=once
