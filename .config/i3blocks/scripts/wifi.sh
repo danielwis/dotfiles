@@ -6,6 +6,8 @@
 
 . $(dirname $0)/vars.sh
 
+[ "$button" = "1" ] && ~/scripts/wifi.sh
+
 # Create temp file for storing variables (no better way???)
 echo "`iwctl station wlan0 show | grep "Connected network" | sed 's/\s*Connected network\s*//' | sed 's/\s*$//g'`" > wifi_tmp
 echo "`awk 'NR==3 {print $3}' /proc/net/wireless | sed 's/\.$//' | sed 's/[\r\n]//g'`" >> wifi_tmp
