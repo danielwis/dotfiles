@@ -9,6 +9,9 @@ xmodmap ~/.Xmodmap
 #feh --bg-fill --randomize ~/.wallpapers/* &
 feh --bg-fill ~/.wallpapers/green-road.jpg
 
+# Start redshift for reduced blue light
+redshift &
+
 export EDITOR=vim
 
 userresources=$HOME/.Xresources
