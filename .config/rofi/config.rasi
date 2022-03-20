@@ -145,4 +145,5 @@ configuration {
       sorting-method:    "name";
   }
 }
-@theme "/usr/share/rofi/themes/slate.rasi"
+/* @theme "/usr/share/rofi/themes/slate.rasi" */
+@theme "simple-green.rasi"

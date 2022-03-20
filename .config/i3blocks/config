@@ -37,5 +37,5 @@ interval=1
 [powermenu]
 align=center
 min_width=30
-command=~/.config/i3blocks/scripts/powermenu.sh
+command=~/.config/i3blocks/scripts/pmenu.sh
 interval=once
