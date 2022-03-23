@@ -12,6 +12,9 @@ feh --bg-fill ~/.wallpapers/green-road.jpg
 # Start redshift for reduced blue light
 redshift &
 
+# Start libinput-gestures for mousepad gestures
+libinput-gestures-setup start
+
 export EDITOR=vim
 
 userresources=$HOME/.Xresources
