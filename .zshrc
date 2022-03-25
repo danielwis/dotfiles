@@ -38,7 +38,7 @@ alias gl="git log --oneline"
 alias ls="ls -ha --color=auto --group-directories-first"
 alias grep="grep --color=auto"
 # Other
-alias config='/usr/bin/git --git-dir=$HOME/.dots/ --work-tree=$HOME'
+alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
 # Environment
 export BROWSER="firefox"
