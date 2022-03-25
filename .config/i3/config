@@ -99,10 +99,10 @@ bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 # move focused window
-bindsym $mod+Shift+j move left
-bindsym $mod+Shift+k move down
-bindsym $mod+Shift+l move up
-bindsym $mod+Shift+semicolon move right
+# bindsym $mod+Shift+j move left
+# bindsym $mod+Shift+k move down
+# bindsym $mod+Shift+l move up
+# bindsym $mod+Shift+semicolon move right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
@@ -181,6 +181,15 @@ bindsym $mod+Shift+0 move container to workspace $ws10
 # assign [class="URxvt"] $ws1
 assign [class="firefox"] $ws2
 assign [class="discord"] $ws3
+
+# Window-specific workspaces
+workspace $ws1 output HDMI-0
+workspace $ws2 output HDMI-0
+workspace $ws3 output HDMI-1
+
+# Move workspace to different screen
+bindsym $mod+Shift+l move workspace to output right
+bindsym $mod+Shift+h move workspace to output left
 
 # Always start the following windows as floating
 for_window [class="zoom"] floating enable
