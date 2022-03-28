@@ -6,18 +6,6 @@
 command=~/.config/i3blocks/scripts/pacmanupdates.sh
 interval=1800
 
-[bluetooth]
-command=~/.config/i3blocks/scripts/bluetooth_start_wrapper.sh
-interval=10
-
-[wifi-stats]
-command=~/.config/i3blocks/scripts/wifi.sh
-interval=2
-
-[battery]
-command=~/.config/i3blocks/scripts/battery.sh
-interval=5
-
 [volume]
 command=~/.config/i3blocks/scripts/volume.sh
 color=#a6eca8
