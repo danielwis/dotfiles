@@ -85,7 +85,7 @@ element {
 }
 element-text {
     font:             "FiraCode Nerd Font 64";
-    margin:           6.5% 4% 6.5% 4%;
+    margin:           53px;
     background-color: inherit;
     text-color:       inherit;
     horizontal-align:               0.5;
