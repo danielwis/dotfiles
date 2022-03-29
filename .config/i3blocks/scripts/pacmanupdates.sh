@@ -2,7 +2,10 @@
 
 . $(dirname $0)/vars.sh
 
-# Sync updates, quietly
+# Sync updates, quietly.
+# Requires having
+# [username] ALL=(ALL) NOPASSWD:/usr/bin/pacman -Syq
+# in the sudoers file (sudo EDITOR=vim visudo)
 sudo pacman -Syq > /dev/null
 # Get update count
 pacman -Qu | wc -l > update_tmp
