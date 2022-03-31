@@ -6,7 +6,7 @@ SOUND_STATUS=$(amixer get Master | grep '\[o'  | awk '{print $6}' | sed 's/\]//'
 
 if [ "$button" = "1" ]; then
     # Mute/unmute
-    amixer -q sset Master toggle
+    pactl set-sink-mute @DEFAULT_SINK@ toggle
     SOUND_STATUS=$(amixer get Master | grep '\[o'  | awk '{print $6}' | sed 's/\]//' | sed 's/\[//' | head -n 1)
     [ "$SOUND_STATUS" = "off" ] && notify-send "Volume muted" || notify-send "Volume unmuted"
 fi
