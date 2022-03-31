@@ -6,6 +6,10 @@
 command=~/.config/i3blocks/scripts/pacmanupdates.sh
 interval=1800
 
+[datarate]
+command=~/.config/i3blocks/scripts/datarate.sh
+interval=10
+
 [volume]
 command=~/.config/i3blocks/scripts/volume.sh
 color=#a6eca8
