@@ -14,6 +14,10 @@ interval=10
 command=~/.config/i3blocks/scripts/wifi.sh
 interval=2
 
+[datarate]
+command=~/.config/i3blocks/scripts/datarate.sh
+interval=10
+
 [battery]
 command=~/.config/i3blocks/scripts/battery.sh
 interval=5
