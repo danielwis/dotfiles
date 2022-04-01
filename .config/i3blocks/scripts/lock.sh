@@ -11,8 +11,6 @@ maim $imagedir
         -resize 1x1 txt:- | awk -F '[%$]' 'NR==2{gsub(",",""); printf "%.0f\n", $(NF-1)}');
             value=60 # Also stolen
 
-            echo $color > ~/testredshift
-
             if [ $color -lt $value ]; then # dark ackground image and white text
                 i3lock \
                     --blur=5 \
@@ -34,7 +32,7 @@ maim $imagedir
                     --verif-color=ccccccdd \
                     --wrong-text="" \
                     --greeter-text="Type password to unlock" \
-                    --greeter-pos="ix:550" \
+                    --greeter-pos="ix:750" \
                     --greeter-color=ccccccdd \
                     -e
                                 else
