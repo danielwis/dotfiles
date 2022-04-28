@@ -15,7 +15,7 @@ echo "$UPDATES_ICON $UPDATE_COUNT"
 echo "$UPDATES_ICON $UPDATE_COUNT"
 
 if [ "$button" = "1" ]; then
-    notify-send "Updates available" "$(pacman -Qu)"
+    [ "$UPDATE_COUNT" = "0" ] && notify-send "No updates available" || notify-send "Updates available" "$(pacman -Qu)"
 fi
 
 [ "$UPDATE_COUNT" -lt "5" ] && echo "$PASTEL_GREEN" && exit
