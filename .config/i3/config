@@ -194,6 +194,8 @@ bindsym $mod+Shift+h move workspace to output left
 # Always start the following windows as floating
 for_window [class="zoom"] floating enable
 for_window [class="feh"] floating enable
+for_window [class="slack"] floating enable
+for_window [class="net-runelite-launcher-Launcher"] floating enable
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -253,6 +255,7 @@ bar {
 
 exec --no-startup-id i3-sensible-terminal
 exec firefox
+exec discord
 # Not autostarting picom due to bugs when restarting i3 - makes the focused terminal
 # completely opaque for some reason, and is fixed when closing/reopening it...
 # exec_always picom
