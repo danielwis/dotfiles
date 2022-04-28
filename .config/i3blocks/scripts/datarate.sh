@@ -13,8 +13,8 @@ PREVDOWN=$(tail -n 1 $LOGFILE)
 UP=$(echo "$CURRUP $PREVUP" | awk '{printf "%d", $1-$2}')
 DOWN=$(echo "$CURRDOWN $PREVDOWN" | awk '{printf "%d", $1-$2}')
 
-UP=$(echo $UP | awk '{printf "%.2f", $1 / (1024*10)}') # Avg. Mbps over 10 seconds
-DOWN=$(echo $DOWN | awk '{printf "%.2f", $1 / (1024*10)}') # Avg. Mbps over 10 seconds
+UP=$(echo $UP | awk '{printf "%.1f", $1 / (1024*1024*10)}') # Avg. Mbps over 10 seconds
+DOWN=$(echo $DOWN | awk '{printf "%.1f", $1 / (1024*1024*10)}') # Avg. Mbps over 10 seconds
 
 echo "$UPICON $UP $DOWNICON $DOWN"
 echo "$UP/$DOWN"
