@@ -31,6 +31,7 @@ alias p="sudo pacman"
 alias bat="bat -p --paging=never"
 alias cl="clear"
 alias cds='cd `find ~ -type d | fzf`'
+alias vimf='vim $(fzf --preview "bat --style=numbers --color=always --line-range :500 {}")'
 # Git
 alias gs="git status"
 alias gl="git log --oneline"
