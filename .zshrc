@@ -22,6 +22,7 @@ bindkey "^?" backward-delete-char
 zstyle :compinstall filename '/home/daniel/.zshrc'
 
 # Tab completion
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 autoload -Uz compinit
 compinit
 _comp_options+=(globdots) # Include hidden files
@@ -30,8 +31,10 @@ _comp_options+=(globdots) # Include hidden files
 alias p="sudo pacman"
 alias bat="bat -p --paging=never"
 alias cl="clear"
-alias cds='cd `find ~ -type d | fzf`'
+alias cds='cd `find ~ -type d | grep -v ".git" | fzf`'
 alias vimf='vim $(fzf --preview "bat --style=numbers --color=always --line-range :500 {}")'
+alias up='cd ..'
+alias vpn='cd ~/Documents/kth/year-4/en2720/ && sudo bash vpn-connect.sh --disconnect && sleep 1 && sudo bash vpn-connect.sh'
 # Git
 alias gs="git status"
 alias gl="git log --oneline"
@@ -40,6 +43,7 @@ alias ls="ls -ha --color=auto --group-directories-first"
 alias grep="grep --color=auto"
 # Other
 alias config='/usr/bin/git --git-dir=$HOME/.dots/ --work-tree=$HOME'
+alias randpw="< /dev/urandom tr -dc '!?#*-_=()/&%'A-Za-z0-9 | head -c 16; echo"
 
 # Environment
 export BROWSER="firefox"
@@ -50,6 +54,11 @@ export PATH="$PATH:$HOME/scripts"
 git_branch() {
     git branch 2> /dev/null | grep \* | sed -e 's/* \(.*\)/(\1) /'
 }
+
+mkdirc() {
+    mkdir -v $1 && cd $1
+}
+export mkdirc
 
 # Syntax highlighting
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
