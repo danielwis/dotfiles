@@ -39,11 +39,16 @@ inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u
 " -------------------------------------
 
 call plug#begin('~/.vim/plugged')
-"Plug 'SirVer/ultisnips'                 " Snippets
-" Plug 'lervag/vimtex'                    " Lots of LaTeX support
+Plug 'SirVer/ultisnips'                 " Snippets
+Plug 'lervag/vimtex'                    " Lots of LaTeX support
 Plug 'preservim/nerdtree'               " Visual file browsing
 Plug 'tpope/vim-surround'               " Surround text objects with things (parens, quotes etc.)
 Plug 'tpope/vim-repeat'                 " Extend the . command to things like vim-surround
+Plug 'romainl/vim-cool'                 " No more lingering hl after search
+Plug 'inkarkat/vim-ReplaceWithRegister' " Replace motion with register without intermediate deletion
+Plug 'gaoDean/autolist.nvim'            " Make lists better (autocomplete list items, tab for sublists etc)
+Plug 'zegervdv/nrpattern.nvim'          " Extend <C-x> and <C-a> functionality to custom patterns etc
+
 Plug 'vim-airline/vim-airline'          " Nice status bar at the bottom of the screen
 Plug 'vim-airline/vim-airline-themes'   " Themes for vim-airline
 Plug 'ludovicchabant/vim-gutentags'
@@ -57,10 +62,6 @@ Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-cmdline'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-nvim-lsp-signature-help'
-
-" plugins for snippets
-" Plug 'hrsh7th/cmp-vsnip'
-" Plug 'hrsh7th/vim-vsnip'
 
 Plug 'sainnhe/everforest'               " Colorscheme
 call plug#end()
@@ -144,9 +145,9 @@ set foldexpr=nvim_treesitter#foldexpr()
 " Save/load fold state automatically
 au BufWinLeave *.* mkview
 au BufWinEnter *.* silent! loadview
-" Use space to fold/unfold
-nnoremap <Space> foldlevel('.') ? 'za' : '<Space>'
-vnoremap <Space> zf
+" Use space to fold/unfold (clashes with lsp mappings)
+" nnoremap <Space> foldlevel('.') ? 'za' : '<Space>'
+" vnoremap <Space> zf
 
 
 
@@ -165,8 +166,5 @@ endfunction
 command WC call WC()
 
 
-
 " Loads lua config
 luafile ~/.config/nvim/lua/init.lua
-" Autocompletion
-luafile ~/.config/nvim/lua/nvim-cmp.lua
