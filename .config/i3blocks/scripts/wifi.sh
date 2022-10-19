@@ -31,9 +31,9 @@ echo "  $WIFI_NAME ($WIFI_NORM_SIG_STR%)"
 # Short text
 echo "  $WIFI_NORM_SIG_STR%"
 
-if [ $WIFI_NORM_SIG_STR -ge 70 ]; then
+if [ $WIFI_NORM_SIG_STR -ge 75 ]; then
     echo $PASTEL_GREEN
-elif [ $WIFI_NORM_SIG_STR -ge 40 ]; then
+elif [ $WIFI_NORM_SIG_STR -ge 50 ]; then
     echo $PASTEL_YELLOW
 else
     echo $PASTEL_RED
