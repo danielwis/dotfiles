@@ -13,6 +13,7 @@ set $mod Mod4
 
 # Borders and gaps
 default_border none
+for_window [class="^.*"] border pixel 0
 gaps inner 10
 gaps outer 10
 
@@ -243,7 +244,7 @@ bar {
 }
 
 
-exec --no-startup-id i3-sensible-terminal
+exec --no-startup-id alacritty
 exec firefox
 # Not autostarting picom due to bugs when restarting i3 - makes the focused terminal
 # completely opaque for some reason, and is fixed when closing/reopening it...
