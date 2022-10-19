@@ -8,7 +8,7 @@
 textbox-prompt-colon {
 	expand: 						false;
 	str: 							"System |";
-	background-color: 				@background-alt;
+	background-color: 				@alternate-normal-background;
 	text-color: 					@foreground;
 }
 
@@ -64,7 +64,7 @@ textbox {
 textbox-prompt-colon {
 	expand: 						false;
 	str: 							"System |";
-	background-color: 				@background-alt;
+	background-color: 				@alternate-normal-background;
 	text-color: 					@foreground;
     //padding:                        1% 0.5% 1% 0.5%;
 }
