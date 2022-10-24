@@ -3,6 +3,7 @@
 require('mappings')
 require('nvim-cmp')
 require"nrpattern".setup()
+require('autolist').setup({})
 
 -- Set up language servers
 --
