@@ -12,7 +12,10 @@
 set $mod Mod4
 
 # Borders and gaps
-default_border none
+# New hack for removing window titles
+for_window [class="^.*"] border pixel 0
+# Old hack
+default_border pixel 0
 gaps inner 10
 gaps outer 10
 
@@ -194,7 +197,10 @@ bindsym $mod+Shift+h move workspace to output left
 # Always start the following windows as floating
 for_window [class="zoom"] floating enable
 for_window [class="feh"] floating enable
-for_window [class="slack"] floating enable
+for_window [class="Slack"] floating enable
+for_window [class="Steam"] floating enable
+for_window [instance="origin.exe"] floating enable
+for_window [instance="eadesktop.exe"] floating enable
 for_window [class="net-runelite-launcher-Launcher"] floating enable
 
 # reload the configuration file
@@ -253,7 +259,7 @@ bar {
 }
 
 
-exec --no-startup-id i3-sensible-terminal
+exec --no-startup-id alacritty
 exec firefox
 exec discord
 # Not autostarting picom due to bugs when restarting i3 - makes the focused terminal
@@ -262,5 +268,5 @@ exec discord
 # PRANK 'twas the jonaburg version that fucked up - got the git one from yshui and
 # that works. Though no support for rounded corners (legacy backends) and
 # dual kawase (experimental backends) at the same time
-exec_always picom -b --experimental-backends
+exec_always picom -b
 # exec_always picom -b
