@@ -3,25 +3,30 @@ lsp.preset('recommended')
 
 lsp.ensure_installed({
     'tsserver',
-    'eslint',
     'sumneko_lua',
     'rust_analyzer'
 })
 
 -- Make Lua recognize 'vim' as a global variable. Must be after lsp.setup AFAIK, to be able to override it.
 lsp.configure("sumneko_lua", {
-  settings = {
-    Lua = {
-      diagnostics = {
-        globals = {'vim', 'use'},
-        disable = {'undefined-global'},
-      },
+    settings = {
+        Lua = {
+            diagnostics = {
+                globals = { 'vim', 'use' },
+                disable = { 'undefined-global' },
+            },
+        },
     },
-  },
 })
 
+-- lsp.configure("eslint", {
+--     settings = {
+--         format = { enable = true }
+--     }
+-- })
+
 local cmp = require("cmp")
-local cmp_select = {behavior = cmp.SelectBehavior.Select}
+local cmp_select = { behavior = cmp.SelectBehavior.Select }
 local cmp_mappings = lsp.defaults.cmp_mappings({
     ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
     ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
@@ -36,10 +41,10 @@ lsp.setup_nvim_cmp({
 lsp.set_preferences({
     suggest_lsp_servers = false,
     -- sign_icons = {
-        -- error = 'E',
-        -- warn = 'W',
-        -- hint = 'H',
-        -- info = 'I'
+    -- error = 'E',
+    -- warn = 'W',
+    -- hint = 'H',
+    -- info = 'I'
     -- }
 })
 
@@ -71,7 +76,7 @@ lsp.on_attach(function(client, bufnr)
     vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, opts)
     vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, opts)
     vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
-    vim.keymap.set('n', '<space>f', vim.lsp.buf.formatting, opts)
+    vim.keymap.set('n', '<space>f', vim.lsp.buf.format, opts)
 end)
 
 lsp.setup()

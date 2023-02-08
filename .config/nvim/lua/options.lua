@@ -78,12 +78,13 @@ vim.g.UltiSnipsJumpForwardTrigger = "<tab>"
 vim.g.UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
 -- Gutentags
--- vim.g.gutentags_generate_on_new = 1
--- vim.g.gutentags_generate_on_missing = 1
--- vim.g.gutentags_generate_on_write = 1
--- vim.g.gutentags_generate_on_empty_buffer = 0
--- vim.g.gutentags_ctags_extra_args = ['--tag-relative=yes', '--fields=+ailmnS',]
--- :set tags=./tags; -- Look for tags recursively (current folder --> /)
+vim.cmd[[let g:gutentags_generate_on_new = 1]]
+vim.cmd[[let g:gutentags_generate_on_missing = 1]]
+vim.cmd[[let g:gutentags_generate_on_write = 1]]
+vim.cmd[[let g:gutentags_generate_on_empty_buffer = 0]]
+vim.g.gutentags_exclude_filetypes = {"ts", "vue"}
+vim.g.gutentags_ctags_extra_args = {'--tag-relative=yes', '--fields=+ailmnS', }
+vim.cmd[[:set tags=./tags;]]  -- Look for tags recursively (current folder --> /)
 
 
 -------------
@@ -95,16 +96,25 @@ vim.g.UltiSnipsJumpBackwardTrigger = "<s-tab>"
 -- screwing up folding when switching between windows. Yoinked shamelessly from
 -- https://vim.fandom.com/wiki/Keep_folds_closed_while_inserting_text
 -- set foldmethod=syntax
-vim.cmd[[set foldmethod=expr]]
-vim.cmd[[set foldexpr=nvim_treesitter#foldexpr()]]
+vim.o.foldmethod="expr"
+vim.o.foldexpr = "nvim_treesitter#foldexpr()"
 -- autocmd InsertEnter * if !exists('w:last_fdm') | let w:last_fdm=&foldmethod | setlocal foldmethod=manual | endif
 -- autocmd InsertLeave,WinLeave * if exists('w:last_fdm') | let &l:foldmethod=w:last_fdm | unlet w:last_fdm | endif
 
--- All folds open on start
--- set nofoldenable
--- Save/load fold state automatically
-vim.cmd[[au BufWinLeave *.* mkview]]
-vim.cmd[[au BufWinEnter *.* silent! loadview]]
+-- All folds open on start, but also save/load fold state automatically
+vim.opt.foldenable = false
+vim.cmd[[set viewoptions-=options]]
+local augroup = vim.api.nvim_create_augroup('remember_folds', {clear = true})
+vim.api.nvim_create_autocmd('BufWinLeave', {
+  pattern = '*.*',
+  group = augroup,
+  command = 'mkview'
+})
+vim.api.nvim_create_autocmd('BufWinEnter', {
+  pattern = '*.*',
+  group = augroup,
+  command = 'silent! loadview'
+})
 -- Use space to fold/unfold (clashes with lsp mappings)
 -- nnoremap <Space> foldlevel('.') ? 'za' : '<Space>'
 -- vnoremap <Space> zf
