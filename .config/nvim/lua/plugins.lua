@@ -17,7 +17,8 @@ Plug 'zegervdv/nrpattern.nvim' -- Extend <C-x> and <C-a> functionality to custom
 
 Plug 'vim-airline/vim-airline' -- Nice status bar at the bottom of the screen
 Plug 'vim-airline/vim-airline-themes' -- Themes for vim-airline
-Plug 'ludovicchabant/vim-gutentags'
+-- I think tags is obsolete thanks to lsp (?)
+-- Plug 'ludovicchabant/vim-gutentags'
 
 Plug('nvim-treesitter/nvim-treesitter', { ['do'] = vim.fn[':TSUpdate'] })
 
@@ -28,7 +29,12 @@ Plug('nvim-telescope/telescope.nvim', { ['tag'] = '0.1.0' })
 -- Visualise the vim undo tree
 Plug 'mbbill/undotree'
 
+-- Git stuff (TODO: learn)
 Plug 'tpope/vim-fugitive'
+
+-- Tab-/bufferline
+Plug('nvim-tree/nvim-web-devicons') -- For coloured icons
+Plug('akinsho/bufferline.nvim', { [ 'tag' ] = 'v3.*' })
 
 -- LSP Support
 Plug 'neovim/nvim-lspconfig'

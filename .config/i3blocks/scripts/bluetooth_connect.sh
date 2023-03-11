@@ -20,6 +20,7 @@ DEVICE=$(echo "devices" | bluetoothctl | grep "^Device" | sed 's/Device //g' | a
 [ -z $DEVICE ] && exit
 
 # Try to connect, on success, exit. On failure, try to pair first
+# Why not echo and pipe into it as that worked above?
 bluetoothctl -- connect $DEVICE
 [ "$?" == "0" ] && exit
 bluetoothctl -- pair $DEVICE &&  bluetoothctl -- connect $DEVICE

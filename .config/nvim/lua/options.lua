@@ -101,7 +101,7 @@ vim.cmd[[set foldexpr=nvim_treesitter#foldexpr()]]
 -- autocmd InsertLeave,WinLeave * if exists('w:last_fdm') | let &l:foldmethod=w:last_fdm | unlet w:last_fdm | endif
 
 -- All folds open on start
--- set nofoldenable
+vim.opt.foldenable = false
 -- Save/load fold state automatically
 vim.cmd[[au BufWinLeave *.* mkview]]
 vim.cmd[[au BufWinEnter *.* silent! loadview]]

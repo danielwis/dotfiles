@@ -49,7 +49,7 @@ alias ls="ls -ha --color=auto --group-directories-first"
 alias grep="grep --color=auto"
 # Other
 alias config='/usr/bin/git --git-dir=$HOME/.dots/ --work-tree=$HOME'
-alias randpw="< /dev/urandom tr -dc '!?#*-_=()/&%'A-Za-z0-9 | head -c 16; echo"
+alias passgen="< /dev/urandom tr -dc '!?#*-_=()/&%'A-Za-z0-9 | head -c 16; echo"
 
 # Environment
 export BROWSER="firefox"
@@ -59,7 +59,7 @@ export VISUAL="vim"
 export LG_WEBOS_TV_SDK_HOME="$HOME/Documents/"
 export WEBOS_CLI_TV="$LG_WEBOS_TV_SDK_HOME/CLI/bin"
 # ... and then PATH
-export PATH="$PATH:$HOME/scripts:$HOME/bin:$WEBOS_CLI_TV"
+export PATH="$PATH:$HOME/scripts:$HOME/bin:$WEBOS_CLI_TV:$HOME/.local/bin"
 
 git_branch() {
     # Backup: resp=$(git branch 2> /dev/null | grep \* | sed -e 's/* \(.*\)/(\1) /')
