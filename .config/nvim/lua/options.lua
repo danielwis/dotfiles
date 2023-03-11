@@ -77,15 +77,6 @@ vim.g.vimtex_quickfix_mode=0
 vim.g.UltiSnipsJumpForwardTrigger = "<tab>"
 vim.g.UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
--- Gutentags
-vim.cmd[[let g:gutentags_generate_on_new = 1]]
-vim.cmd[[let g:gutentags_generate_on_missing = 1]]
-vim.cmd[[let g:gutentags_generate_on_write = 1]]
-vim.cmd[[let g:gutentags_generate_on_empty_buffer = 0]]
-vim.g.gutentags_exclude_filetypes = {"ts", "vue"}
-vim.g.gutentags_ctags_extra_args = {'--tag-relative=yes', '--fields=+ailmnS', }
-vim.cmd[[:set tags=./tags;]]  -- Look for tags recursively (current folder --> /)
-
 
 -------------
 --- Folds ---

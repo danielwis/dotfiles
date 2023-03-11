@@ -19,12 +19,6 @@ lsp.configure("sumneko_lua", {
     },
 })
 
--- lsp.configure("eslint", {
---     settings = {
---         format = { enable = true }
---     }
--- })
-
 local cmp = require("cmp")
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
 local cmp_mappings = lsp.defaults.cmp_mappings({
@@ -76,7 +70,11 @@ lsp.on_attach(function(client, bufnr)
     vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, opts)
     vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, opts)
     vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
+<<<<<<< HEAD
     vim.keymap.set('n', '<space>f', vim.lsp.buf.format, opts)
+=======
+    vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format{ async = true } end, opts)
+>>>>>>> master
 end)
 
 lsp.setup()

@@ -33,7 +33,6 @@ set laststatus=2 " Status always on
 set undofile
 set undodir=~/.vim/undodir
 
-
 """ Folds
 " Make folds based off of syntax.
 " Also, don't screw up folds when inserting text that might affect them, until

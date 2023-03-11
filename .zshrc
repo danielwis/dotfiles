@@ -38,6 +38,9 @@ alias cl="clear"
 alias cds='cd `find ~ -type d | grep -v "\.git" | fzf`'
 alias here='srcfile=$(find ~ -type f | grep -v "\.git" | fzf --preview "bat --style=numbers --color=always --line-range :500 {}") && [ $srcfile ] && mv $srcfile .'
 alias hist='cat ~/.histfile | fzf'
+alias vimf='vim $(fzf --preview "bat --style=numbers --color=always --line-range :500 {}")'
+alias up='cd ..'
+alias vpn='cd ~/Documents/kth/year-4/en2720/ && sudo bash vpn-connect.sh --disconnect && sleep 1 && sudo bash vpn-connect.sh'
 # Git
 alias gs="git status"
 alias gl="git log --oneline"
@@ -46,14 +49,17 @@ alias up='cd ..'
 alias ls="ls -ha --color=auto --group-directories-first"
 alias grep="grep --color=auto"
 # Other
-alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+alias passgen="< /dev/urandom tr -dc '!?#*-_=()/&%'A-Za-z0-9 | head -c 16; echo"
 
 # Environment
 export BROWSER="firefox"
 export EDITOR="vim"
 export VISUAL="vim"
+# Jellyfin-webos manual installation
+export LG_WEBOS_TV_SDK_HOME="$HOME/Documents/"
+export WEBOS_CLI_TV="$LG_WEBOS_TV_SDK_HOME/CLI/bin"
+# ... and then PATH
 export PATH="$PATH:$HOME/scripts:$HOME/bin:$WEBOS_CLI_TV:$HOME/.local/bin"
-export PYTHONPATH="/home/daniel/Documents/kth/amanuens/twmn/src/lib/python/:/home/daniel/Documents/kth/amanuens/canvas-automation/lib/python/"
 
 git_branch() {
     # Backup: resp=$(git branch 2> /dev/null | grep \* | sed -e 's/* \(.*\)/(\1) /')

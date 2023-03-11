@@ -13,11 +13,11 @@ Plug 'romainl/vim-cool' -- No more lingering hl after search
 Plug 'inkarkat/vim-ReplaceWithRegister' -- Replace motion with register without intermediate deletion
 -- Plug 'gaoDean/autolist.nvim'          -- Make lists better (autocomplete list items, tab for sublists etc)
 -- Add back when ultisnips tab conflict is fixed
--- Plug 'zegervdv/nrpattern.nvim' -- Extend <C-x> and <C-a> functionality to custom patterns etc
+
+Plug 'zegervdv/nrpattern.nvim' -- Extend <C-x> and <C-a> functionality to custom patterns etc
 
 Plug 'vim-airline/vim-airline' -- Nice status bar at the bottom of the screen
 Plug 'vim-airline/vim-airline-themes' -- Themes for vim-airline
--- Plug 'ludovicchabant/vim-gutentags'
 
 Plug('nvim-treesitter/nvim-treesitter', { ['do'] = vim.fn[':TSUpdate'] })
 
@@ -31,9 +31,9 @@ Plug 'mbbill/undotree'
 -- Git stuff (TODO: learn)
 Plug 'tpope/vim-fugitive'
 
--- Tab line
-Plug 'nvim-tree/nvim-web-devicons' -- For coloured icons
-Plug ('akinsho/bufferline.nvim', { [ 'tag' ] = 'v3.*' })
+-- Tab-/bufferline
+Plug('nvim-tree/nvim-web-devicons') -- For coloured icons
+Plug('akinsho/bufferline.nvim', { [ 'tag' ] = 'v3.*' })
 
 -- LSP Support
 Plug 'neovim/nvim-lspconfig'
