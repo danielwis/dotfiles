@@ -36,8 +36,8 @@ alias p="sudo pacman"
 alias bat="bat -p --paging=never"
 alias cl="clear"
 alias cds='cd `find ~ -type d | grep -v "\.git" | fzf`'
-alias here='srcfile=$(find ~ -type f | grep -v "\.git" | fzf --preview "bat --style=numbers --color=always --line-range :500 {}") && [ $srcfile ] && cp $srcfile .'
-alias vimf='vim $(fzf --preview "bat --style=numbers --color=always --line-range :500 {}")'
+alias here='srcfile=$(find ~ -type f | grep -v "\.git" | fzf --preview "bat --style=numbers --color=always --line-range :500 {}") && [ $srcfile ] && mv $srcfile .'
+alias hist='cat ~/.histfile | fzf'
 # Git
 alias gs="git status"
 alias gl="git log --oneline"
@@ -52,7 +52,8 @@ alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 export BROWSER="firefox"
 export EDITOR="vim"
 export VISUAL="vim"
-export PATH="$PATH:$HOME/scripts:$HOME/bin:$WEBOS_CLI_TV"
+export PATH="$PATH:$HOME/scripts:$HOME/bin:$WEBOS_CLI_TV:$HOME/.local/bin"
+export PYTHONPATH="/home/daniel/Documents/kth/amanuens/twmn/src/lib/python/:/home/daniel/Documents/kth/amanuens/canvas-automation/lib/python/"
 
 git_branch() {
     # Backup: resp=$(git branch 2> /dev/null | grep \* | sed -e 's/* \(.*\)/(\1) /')
@@ -66,6 +67,12 @@ mkdirc() {
     mkdir $1 && cd $1
 }
 export mkdirc
+
+edit() {
+    [ -z $1 ] && fname=$(fzf --preview "bat --style=numbers --color=always --line-range :500 {}") || fname=$1
+    [ $fname ] && nvim $fname
+}
+export edit
 
 # Syntax highlighting
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

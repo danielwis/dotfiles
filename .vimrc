@@ -33,14 +33,26 @@ set laststatus=2 " Status always on
 set undofile
 set undodir=~/.vim/undodir
 
+
 """ Folds
-set foldmethod=syntax " Make folds based off of syntax
-" Save fold state
-au BufWinLeave *.* mkview
-au BufWinEnter *.* silent loadview
+" Make folds based off of syntax.
+" Also, don't screw up folds when inserting text that might affect them, until
+" leaving insert mode. Foldmethod is local to the window. Protect against
+" screwing up folding when switching between windows. Yoinked shamelessly from
+" https://vim.fandom.com/wiki/Keep_folds_closed_while_inserting_text
+set foldmethod=syntax
+autocmd InsertEnter * if !exists('w:last_fdm') | let w:last_fdm=&foldmethod | setlocal foldmethod=manual | endif
+autocmd InsertLeave,WinLeave * if exists('w:last_fdm') | let &l:foldmethod=w:last_fdm | unlet w:last_fdm | endif
+
+" All folds open on start
 set nofoldenable
+" Save/load fold state automatically
+au BufWinLeave *.* mkview
+au BufWinEnter *.* silent! loadview
+" Use space to fold/unfold
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 vnoremap <Space> zf
+
 
 " Spellcheck (TODO: Use ftplugins instead?)
 " autocmd FileType latex,tex,md,markdown setlocal spell spelllang=en_gb
@@ -52,14 +64,18 @@ inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u
 " -------------------------------------
 
 call plug#begin('~/.vim/plugged')
-Plug 'SirVer/ultisnips'
-Plug 'lervag/vimtex'
-Plug 'preservim/nerdtree'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+Plug 'SirVer/ultisnips'                 " Snippets
+Plug 'lervag/vimtex'                    " Lots of LaTeX support
+Plug 'preservim/nerdtree'               " Visual file browsing
+Plug 'tpope/vim-surround'               " Surround text objects with things (parens, quotes etc.)
+Plug 'tpope/vim-repeat'                 " Extend the . command to things like vim-surround
+Plug 'vim-airline/vim-airline'          " Nice status bar at the bottom of the screen
+Plug 'vim-airline/vim-airline-themes'   " Themes for vim-airline
+Plug 'vim-syntastic/syntastic'          " Advanced syntax highlighting
+Plug 'ludovicchabant/vim-gutentags'
 call plug#end()
 
-" Toggle NerdTree with Ctrl-n
+" NerdTree
 nnoremap <C-n> :NERDTreeToggle<CR>
 " Exit Vim if NERDTree is the only window remaining in the only tab.
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
@@ -84,6 +100,24 @@ let g:vimtex_quickfix_mode=0
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
+" Syntastic
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_wq = 0
+let g:syntastic_error_symbol = '✗'
+let g:syntastic_warning_symbol = '❕'
+let g:syntastic_style_error_symbol = '›'
+let g:syntastic_style_warning_symbol = '›'
+
+" Gutentags
+let g:gutentags_generate_on_new = 1
+let g:gutentags_generate_on_missing = 1
+let g:gutentags_generate_on_write = 1
+let g:gutentags_generate_on_empty_buffer = 0
+let g:gutentags_ctags_extra_args = [
+            \ '--tag-relative=yes',
+            \ '--fields=+ailmnS',
+            \ ]
+:set tags=./tags; " Look for tags recursively (current folder --> /)
 
 " -------------------------------------
 "          F U N C T I O N S
@@ -97,8 +131,14 @@ function! WC()
     echo result . " words"
 endfunction
 
-command WC call WC()
+function! CharCount()
+    let filename = expand("%")
+    let cmd = "detex " . filename . " | tr -d '[:space:]' | wc -c"
+    echo system(cmd) . " characters"
+endfunction
 
+command WC call WC()
+command CharCount call CharCount()
 
 
 

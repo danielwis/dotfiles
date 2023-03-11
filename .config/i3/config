@@ -76,6 +76,7 @@ bindsym $mod+Shift+q kill
 
 # Start rofi in run mode
 bindsym $mod+d exec --no-startup-id rofi -show run -display-run ":"
+bindsym $mod+a exec --no-startup-id ~/scripts/zathura-open.sh
 
 # (A more modern dmenu replacement is rofi:
 # bindcode $mod+40 exec "rofi -modi drun,run -show drun")
@@ -134,7 +135,7 @@ bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
 
 # focus the parent container
-bindsym $mod+a focus parent
+# bindsym $mod+a focus parent
 
 # focus the child container
 #bindsym $mod+d focus child

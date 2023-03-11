@@ -15,7 +15,7 @@ redshift &
 # Start libinput-gestures for mousepad gestures
 libinput-gestures-setup start
 
-export EDITOR=vim
+export EDITOR=nvim
 
 userresources=$HOME/.Xresources
 usermodmap=$HOME/.Xmodmap

@@ -8,9 +8,9 @@ vim.keymap.set('n', 'J', "mzJ'z") -- Keep cursor at beginning of line when joini
 vim.keymap.set('n', '<C-d>', '<C-d>zz')
 vim.keymap.set('n', '<C-u>', '<C-u>zz')
 -- Keep search results in centre
-vim.keymap.set('n', 'n', 'nzzzv')
-vim.keymap.set('n', 'N', 'Nzzzv')
-vim.keymap.set('x', '<leader>p', '"_dP') -- TODO: Find out why ex mode??
+-- vim.keymap.set('n', 'n', 'nzzzv')
+-- vim.keymap.set('n', 'N', 'Nzzzv')
+-- vim.keymap.set('x', '<leader>p', '"_dP') -- TODO: Find out why ex mode??
 
 -- Yank into system clipboard with <leader>y
 vim.keymap.set('n', '<leader>y', '"+y')

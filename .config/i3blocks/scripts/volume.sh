@@ -11,7 +11,7 @@ if [ "$button" = "1" ]; then
     [ "$SOUND_STATUS" = "off" ] && notify-send "Volume muted" || notify-send "Volume unmuted"
 fi
 
-VOLUME=$(amixer sget Master | awk '{print $4}' | grep "\[" | sed 's/\[//g' | sed 's/%\]//' |head -n 1)
+VOLUME=$(amixer sget Master | awk '{print $5}' | grep "\[" | sed 's/\[//g' | sed 's/%\]//' |head -n 1)
 
 [ "$SOUND_STATUS" = "on" ] && echo "$VOLUME_ICON $VOLUME%" && echo "$VOLUME_ICON $VOLUME%"
 [ "$SOUND_STATUS" = "off" ] && echo "$VOLUME_ICON_MUTE $VOLUME%" && echo "$VOLUME_ICON_MUTE $VOLUME%"
