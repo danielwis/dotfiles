@@ -269,5 +269,5 @@ exec discord
 # PRANK 'twas the jonaburg version that fucked up - got the git one from yshui and
 # that works. Though no support for rounded corners (legacy backends) and
 # dual kawase (experimental backends) at the same time
-exec_always picom -b
+exec_always picom -b --experimental-backends
 # exec_always picom -b

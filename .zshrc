@@ -49,6 +49,7 @@ alias up='cd ..'
 alias ls="ls -ha --color=auto --group-directories-first"
 alias grep="grep --color=auto"
 # Other
+alias config='/usr/bin/git --git-dir=$HOME/.dots/ --work-tree=$HOME'
 alias passgen="< /dev/urandom tr -dc '!?#*-_=()/&%'A-Za-z0-9 | head -c 16; echo"
 
 # Environment
