@@ -6,8 +6,8 @@ UPICON=""
 DOWNICON=""
 LOGFILE="/tmp/netlog"
 
-CURRUP=$(cat /sys/class/net/eno1/statistics/tx_bytes)
-CURRDOWN=$(cat /sys/class/net/eno1/statistics/rx_bytes)
+CURRUP=$(cat /sys/class/net/wlan0/statistics/tx_bytes)
+CURRDOWN=$(cat /sys/class/net/wlan0/statistics/rx_bytes)
 PREVUP=$(head -n 1 $LOGFILE)
 PREVDOWN=$(tail -n 1 $LOGFILE)
 UP=$(echo "$CURRUP $PREVUP" | awk '{printf "%d", $1-$2}')

@@ -14,9 +14,17 @@ interval=900
 command=~/.config/i3blocks/scripts/vpn.sh
 interval=10
 
+[wifi-stats]
+command=~/.config/i3blocks/scripts/wifi.sh
+interval=2
+
 [datarate]
 command=~/.config/i3blocks/scripts/datarate.sh
 interval=10
+
+[battery]
+command=~/.config/i3blocks/scripts/battery.sh
+interval=5
 
 [volume]
 command=~/.config/i3blocks/scripts/volume.sh
