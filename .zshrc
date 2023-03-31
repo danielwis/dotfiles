@@ -32,6 +32,7 @@ autoload -Uz compinit && compinit
 _comp_options+=(globdots) # Include hidden files
 
 # --- Aliases ---
+# General
 alias p="sudo pacman"
 alias bat="bat -p --paging=never"
 alias cl="clear"
@@ -45,7 +46,7 @@ alias vpn='cd ~/Documents/kth/year-4/en2720/ && sudo bash vpn-connect.sh --disco
 alias gs="git status"
 alias gl="git log --oneline"
 alias up='cd ..'
-# Colour
+# Prettifying
 alias ls="ls -ha --color=auto --group-directories-first"
 alias grep="grep --color=auto"
 # Other
