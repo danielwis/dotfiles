@@ -83,6 +83,7 @@ bindsym $mod+a exec --no-startup-id ~/scripts/zathura-open.sh
 
 # Screenshot to clipboard
 bindsym $mod+Shift+s exec maim -s | xclip -selection clipboard -t image/png && notify-send "Screenshot taken!" "Saved to clipboard"
+bindsym $mod+Shift+v exec ~/scripts/screen_recorder.sh
 
 # Screenshot to file
 bindsym Print exec maim ~/Pictures/screenshots/$(date +%F_%s).png && notify-send "Screenshot taken!" "Saved as ~/Pictures/screenshots/$(date +%F_%s).png"
