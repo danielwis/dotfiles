@@ -36,6 +36,9 @@ vim.opt.undodir = os.getenv("HOME") .. "/.config/nvim/undodir"
 
 vim.opt.scrolloff = 8
 vim.opt.signcolumn = "yes"
+-- Highlight current line number
+vim.opt.cursorline = true
+vim.opt.cursorlineopt = "number"
 
 vim.opt.updatetime = 50
 
@@ -58,6 +61,8 @@ vim.cmd('colorscheme everforest')
 vim.g.airline_theme = 'everforest'
 vim.g.airline_powerline_fonts = 1
 
+-- Override theme defaults to make bold. Can change colour with guifg=col
+vim.cmd[[hi CursorLineNr gui=bold]]
 -- Do not highlight conceals, bold text etc
 vim.cmd[[hi clear Conceal]]
 vim.cmd[[hi texBoldStyle ctermbg=NONE]]
