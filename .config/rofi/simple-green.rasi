@@ -37,8 +37,8 @@
 }
 window {
     background-color: @background;
-    width:            512px;
-    height:           256px;
+    width:            1024px;
+    height:           512px;
     border:           1;
     padding:          5;
 }
