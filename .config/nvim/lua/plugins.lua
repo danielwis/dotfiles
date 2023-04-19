@@ -5,7 +5,6 @@
 local Plug = vim.fn['plug#']
 
 vim.call('plug#begin', '~/.config/nvim/plugged')
-Plug 'SirVer/ultisnips' -- Snippets
 Plug 'lervag/vimtex' -- Lots of LaTeX support
 Plug 'tpope/vim-surround' -- Surround text objects with things (parens, quotes etc.)
 Plug 'tpope/vim-repeat' -- Extend the . command to things like vim-surround
@@ -16,8 +15,8 @@ Plug 'inkarkat/vim-ReplaceWithRegister' -- Replace motion with register without 
 
 Plug 'zegervdv/nrpattern.nvim' -- Extend <C-x> and <C-a> functionality to custom patterns etc
 
-Plug 'vim-airline/vim-airline' -- Nice status bar at the bottom of the screen
-Plug 'vim-airline/vim-airline-themes' -- Themes for vim-airline
+Plug 'nvim-lualine/lualine.nvim'
+Plug 'nvim-tree/nvim-web-devicons' -- Icons
 
 Plug('nvim-treesitter/nvim-treesitter', { ['do'] = vim.fn[':TSUpdate'] })
 
@@ -28,12 +27,15 @@ Plug('nvim-telescope/telescope.nvim', { ['tag'] = '0.1.0' })
 -- Visualise the vim undo tree
 Plug 'mbbill/undotree'
 
--- Git stuff (TODO: learn)
-Plug 'tpope/vim-fugitive'
+-- Comment/uncomment lines
+Plug 'numToStr/Comment.nvim'
 
 -- Tab-/bufferline
 Plug('nvim-tree/nvim-web-devicons') -- For coloured icons
 Plug('akinsho/bufferline.nvim', { [ 'tag' ] = 'v3.*' })
+
+-- Indent prettifyer
+Plug 'lukas-reineke/indent-blankline.nvim'
 
 -- LSP Support
 Plug 'neovim/nvim-lspconfig'
@@ -54,7 +56,7 @@ Plug 'hrsh7th/cmp-nvim-lsp-signature-help'
 Plug 'L3MON4D3/LuaSnip'
 Plug 'rafamadriz/friendly-snippets'
 
-Plug 'VonHeikemen/lsp-zero.nvim'
+Plug('VonHeikemen/lsp-zero.nvim', { [ 'tag' ] = 'v1.x' })
 
 Plug 'sainnhe/everforest' -- Colorscheme
 vim.call('plug#end')
