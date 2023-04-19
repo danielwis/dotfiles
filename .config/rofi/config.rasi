@@ -146,4 +146,4 @@ configuration {
   }
 }
 /* @theme "/usr/share/rofi/themes/slate.rasi" */
-@theme "simple-green.rasi"
+@theme "launcher.rasi"
