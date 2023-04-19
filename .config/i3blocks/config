@@ -32,6 +32,11 @@ color=#a6eca8
 interval=once
 signal=10
 
+[brightness]
+command=~/.config/i3blocks/scripts/brightness.sh
+interval=once
+signal=10
+
 [date]
 command=echo " `date +'%a, %d %b %Y'`"
 color="#aec6cf"

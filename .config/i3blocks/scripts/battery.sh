@@ -3,13 +3,14 @@
 . $(dirname $0)/vars.sh
 
 # Status
-BAT=$(cat /sys/class/power_supply/BAT1/capacity)
-MAX_CAPACITY=$(cat /sys/class/power_supply/BAT1/energy_full_design)
-CURRENT_CAPACITY=$(cat /sys/class/power_supply/BAT1/energy_full)
-CHARGING_STATUS=$(cat /sys/class/power_supply/BAT1/status)
+BAT=$(cat /sys/class/power_supply/BAT0/capacity)
+MAX_CAPACITY=$(cat /sys/class/power_supply/BAT0/energy_full_design)
+CURRENT_CAPACITY=$(cat /sys/class/power_supply/BAT0/energy_full)
+CHARGING_STATUS=$(cat /sys/class/power_supply/BAT0/status)
 RELATIVE_CAPACITY=`expr 100 \* $CURRENT_CAPACITY / $MAX_CAPACITY`
+CURRENT_POWER_DRAW=$(awk '{print $1*10^-6 " W"}' /sys/class/power_supply/BAT0/power_now)
 
-[ "$button" == "1" ] && notify-send "Battery status" "$CHARGING_STATUS (currently at $BAT%).\nCapacity: $CURRENT_CAPACITY/$MAX_CAPACITY ($RELATIVE_CAPACITY%)."
+[ "$button" == "1" ] && notify-send "Battery status" "$CHARGING_STATUS (currently at $BAT%).\nCapacity: $CURRENT_CAPACITY/$MAX_CAPACITY ($RELATIVE_CAPACITY%).\nCurrent power draw: $CURRENT_POWER_DRAW."
 
 
 # TODO? Change so colours are kept and only icon changes, or not?

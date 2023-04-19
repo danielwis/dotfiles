@@ -60,5 +60,3 @@ maim $imagedir
                                         --greeter-color=333333dd \
                                         -e
             fi
-
-            systemctl suspend
