@@ -2,13 +2,12 @@ local lsp = require('lsp-zero')
 lsp.preset('recommended')
 
 lsp.ensure_installed({
-    'tsserver',
-    'sumneko_lua',
+    'lua_ls',
     'rust_analyzer'
 })
 
 -- Make Lua recognize 'vim' as a global variable. Must be after lsp.setup AFAIK, to be able to override it.
-lsp.configure("sumneko_lua", {
+lsp.configure("lua_ls", {
     settings = {
         Lua = {
             diagnostics = {
@@ -45,7 +44,7 @@ lsp.set_preferences({
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
-lsp.on_attach(function(client, bufnr)
+lsp.on_attach(function(_, bufnr)
     local opts = { remap = false, buffer = bufnr }
     -- Enable completion triggered by <c-x><c-o>
     vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
