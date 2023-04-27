@@ -5,7 +5,7 @@ pause=""
 resume=""
 stop=""
 opts="$rec\n$pause\n$resume\n$stop"
-chosen_option=$(printf "$opts" | rofi -dmenu -p "Screen recording" -theme powermenu.rasi)
+chosen_option=$(printf "$opts" | rofi -dmenu -p "Screen recording" -theme screenrec-4cols.rasi)
 filename="$HOME/recordings/$(date +'%Y-%m-%d-%H:%M:%S').mkv"
 
 get_opts(){
