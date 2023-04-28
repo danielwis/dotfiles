@@ -8,6 +8,7 @@ vim.call('plug#begin', '~/.config/nvim/plugged')
 Plug 'lervag/vimtex' -- Lots of LaTeX support
 Plug 'tpope/vim-surround' -- Surround text objects with things (parens, quotes etc.)
 Plug 'tpope/vim-repeat' -- Extend the . command to things like vim-surround
+Plug 'tpope/vim-sleuth' -- Automatically set tab width/spaces
 Plug 'romainl/vim-cool' -- No more lingering hl after search
 Plug 'inkarkat/vim-ReplaceWithRegister' -- Replace motion with register without intermediate deletion
 -- Plug 'gaoDean/autolist.nvim'          -- Make lists better (autocomplete list items, tab for sublists etc)
