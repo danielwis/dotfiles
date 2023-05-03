@@ -3,7 +3,7 @@
  * Author : Aditya Shakya (adi1090x)
  * Github : @adi1090x
  *
- * Modified by Daniel Williams 2023-04-05
+ * Modified by Daniel Williams 2023-05-02
  *
  * Rofi Theme File
  * Rofi Version: 1.7.3
@@ -13,7 +13,7 @@
 configuration {
 	modi:                       "drun";
     show-icons:                 true;
-    display-drun:               "";
+    display-drun:               " ";
 	drun-display-format:        "{name}";
 }
 
@@ -28,7 +28,7 @@ configuration {
 }
 /*@import                          "shared/fonts.rasi"*/
 * {
-    font: "Liga SFMono Nerd Font 32";
+    font: "Liga SFMono Nerd Font 16";
 }
 
 /*****----- Main Window -----*****/
@@ -37,8 +37,8 @@ window {
     location:                    center;
     anchor:                      center;
     fullscreen:                  true;
-    width:                       3840px;
-    height:                      2160px;
+    width:                       1920px;
+    height:                      1080px;
     x-offset:                    0px;
     y-offset:                    0px;
 
@@ -104,7 +104,7 @@ entry {
 listview {
     enabled:                     true;
     columns:                     7;
-    lines:                       4;
+    lines:                       5;
     cycle:                       true;
     dynamic:                     true;
     scrollbar:                   false;
@@ -155,7 +155,7 @@ element selected.normal {
 element-icon {
     background-color:            transparent;
     text-color:                  inherit;
-    size:                        72px;
+    size:                        60px;
     cursor:                      inherit;
 }
 element-text {
