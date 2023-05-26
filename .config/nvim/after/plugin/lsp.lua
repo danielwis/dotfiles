@@ -1,75 +1,59 @@
-local lsp = require('lsp-zero')
-lsp.preset('recommended')
+-- Setup language servers.
+local lspconfig = require('lspconfig')
 
-lsp.ensure_installed({
-    'lua_ls',
-    'rust_analyzer'
+-- What to run when an LSP attaches to a buffer
+vim.api.nvim_create_autocmd('LspAttach', {
+    group = vim.api.nvim_create_augroup('UserLspConfig', {}),
+    callback = function(ev)
+        local opts = { remap = false, buffer = bufnr }
+
+        -- Enable completion triggered by <c-x><c-o>
+        vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
+
+        -- Mappings.
+        -- See `:help vim.diagnostic.*` for documentation on any of the below functions
+        vim.keymap.set('n', '<space>e', function() vim.diagnostic.open_float() end, opts)
+        vim.keymap.set('n', '[d', function() vim.diagnostic.goto_prev() end, opts)
+        vim.keymap.set('n', ']d', function() vim.diagnostic.goto_next() end, opts)
+        vim.keymap.set('n', '<space>q', function() vim.diagnostic.setloclist() end, opts)
+
+        -- See `:help vim.lsp.*` for documentation on any of the below functions
+        vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
+        vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+        vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+        vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
+        vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
+        vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, opts)
+        vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, opts)
+        -- vim.keymap.set('n', '<space>wl', print(vim.inspect(vim.lsp.buf.list_workspace_folders)), opts)
+        vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, opts)
+        vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, opts)
+        vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, opts)
+        vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
+        vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, opts)
+    end
 })
 
--- Make Lua recognize 'vim' as a global variable. Must be after lsp.setup AFAIK, to be able to override it.
-lsp.configure("lua_ls", {
-    settings = {
+-- Set up lspconfig.
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
+local servers = { 'pyright', 'rust_analyzer', 'lua_ls' }
+local server_settings = {
+    ["rust_analyzer"] = {
+        ['rust-analyzer'] = {},
+    },
+    ["lua_ls"] = {
         Lua = {
             diagnostics = {
                 globals = { 'vim', 'use' },
                 disable = { 'undefined-global' },
             },
         },
-    },
-})
+    }
+}
 
-local cmp = require("cmp")
-local cmp_select = { behavior = cmp.SelectBehavior.Select }
-local cmp_mappings = lsp.defaults.cmp_mappings({
-    ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
-    ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
-    ['<CR>'] = cmp.mapping.confirm({ select = true }),
-    ['<C-Space>'] = cmp.mapping.complete(),
-})
-
-lsp.setup_nvim_cmp({
-    mappings = cmp_mappings
-})
-
-lsp.set_preferences({
-    suggest_lsp_servers = false,
-    -- sign_icons = {
-    -- error = 'E',
-    -- warn = 'W',
-    -- hint = 'H',
-    -- info = 'I'
-    -- }
-})
-
-
--- Use an on_attach function to only map the following keys
--- after the language server attaches to the current buffer
-lsp.on_attach(function(_, bufnr)
-    local opts = { remap = false, buffer = bufnr }
-    -- Enable completion triggered by <c-x><c-o>
-    vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-
-    -- Mappings.
-    -- See `:help vim.diagnostic.*` for documentation on any of the below functions
-    vim.keymap.set('n', '<space>e', function() vim.diagnostic.open_float() end, opts)
-    vim.keymap.set('n', '[d', function() vim.diagnostic.goto_prev() end, opts)
-    vim.keymap.set('n', ']d', function() vim.diagnostic.goto_next() end, opts)
-    vim.keymap.set('n', '<space>q', function() vim.diagnostic.setloclist() end, opts)
-
-    -- See `:help vim.lsp.*` for documentation on any of the below functions
-    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
-    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
-    vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
-    vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
-    vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
-    vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, opts)
-    vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, opts)
-    -- vim.keymap.set('n', '<space>wl', print(vim.inspect(vim.lsp.buf.list_workspace_folders)), opts)
-    vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, opts)
-    vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, opts)
-    vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, opts)
-    vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
-    vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format{ async = true } end, opts)
-end)
-
-lsp.setup()
+for _, lsp in pairs(servers) do
+    lspconfig[lsp].setup {
+        capabilities = capabilities,
+        settings = server_settings[lsp]
+    }
+end

@@ -40,24 +40,21 @@ Plug 'lukas-reineke/indent-blankline.nvim'
 
 -- LSP Support
 Plug 'neovim/nvim-lspconfig'
-Plug 'williamboman/mason.nvim'
-Plug 'williamboman/mason-lspconfig.nvim'
 
--- Autocompletion
+-- Autocompletion and its sources
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
-Plug 'saadparwaiz1/cmp_luasnip'
 Plug 'hrsh7th/cmp-nvim-lsp'
-Plug 'hrsh7th/cmp-nvim-lua'
+-- Plug 'hrsh7th/cmp-nvim-lua'
 Plug 'hrsh7th/cmp-cmdline'
 Plug 'hrsh7th/cmp-nvim-lsp-signature-help'
+Plug 'f3fora/cmp-spell'
 
 -- Snippets
+Plug 'saadparwaiz1/cmp_luasnip' -- Link autocomplete to snippets
 Plug 'L3MON4D3/LuaSnip'
 Plug 'rafamadriz/friendly-snippets'
-
-Plug('VonHeikemen/lsp-zero.nvim', { [ 'tag' ] = 'v1.x' })
 
 Plug 'sainnhe/everforest' -- Colorscheme
 vim.call('plug#end')
