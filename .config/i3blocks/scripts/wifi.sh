@@ -6,7 +6,7 @@
 
 . $(dirname $0)/vars.sh
 
-[ "$button" = "1" ] && ~/scripts/wifi.sh
+[ "$button" = "1" ] && notify-send "WiFi stats" "$(iwctl station wlan0 show | sed 's/\x1B\[[0-9;]*[JKmsu]//g' | tail -n +5 | head -n -1 | awk '{ print $1 ": " $2}')" -t 10000
 
 # Create temp file for storing variables (no better way???)
 echo "`iwctl station wlan0 show | grep "Connected network" | sed 's/\s*Connected network\s*//' | sed 's/\s*$//g'`" > wifi_tmp
