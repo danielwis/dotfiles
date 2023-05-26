@@ -1,10 +1,14 @@
 # [weather]
-# command=[ -z "$button" ] && ~/.config/i3blocks/scripts/weather.sh || ~/.config/i3blocks/scripts/weather_notification.sh && ~/.config/i3blocks/scripts/weather.sh 
+# command=[ -z "$button" ] && ~/.config/i3blocks/scripts/weather.sh || ~/.config/i3blocks/scripts/weather_notification.sh && ~/.config/i3blocks/scripts/weather.sh
 # interval=1800
 
 [pacman-updates]
 command=~/.config/i3blocks/scripts/pacmanupdates.sh
 interval=1800
+
+[vpn]
+command=~/.config/i3blocks/scripts/vpn.sh
+interval=10
 
 [datarate]
 command=~/.config/i3blocks/scripts/datarate.sh
