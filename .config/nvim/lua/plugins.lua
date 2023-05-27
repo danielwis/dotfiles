@@ -15,6 +15,7 @@ Plug 'inkarkat/vim-ReplaceWithRegister' -- Replace motion with register without 
 -- Add back when ultisnips tab conflict is fixed
 
 Plug 'zegervdv/nrpattern.nvim' -- Extend <C-x> and <C-a> functionality to custom patterns etc
+Plug 'rcarriga/nvim-notify' -- Notifications
 
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'nvim-tree/nvim-web-devicons' -- Icons
