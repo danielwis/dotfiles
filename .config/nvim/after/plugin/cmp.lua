@@ -1,12 +1,6 @@
 -- Autocompletion
 local cmp = require("cmp")
 local luasnip = require("luasnip") -- For certain mappings (tab behaviour)
--- https://github.com/hrsh7th/nvim-cmp/wiki/Example-mappings#luasnip
-local has_words_before = function()
-    unpack = unpack or table.unpack
-    local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-    return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
-end
 
 cmp.setup({
     snippet = {
@@ -41,8 +35,10 @@ cmp.setup({
                 -- they way you will only jump inside the snippet region
             elseif luasnip.expand_or_jumpable() then
                 luasnip.expand_or_jump()
+                --[[ Don't open autocomplete menu with tab
             elseif has_words_before() then
                 cmp.complete()
+            ]]
             else
                 fallback()
             end
@@ -60,12 +56,11 @@ cmp.setup({
     }),
     -- https://github.com/hrsh7th/nvim-cmp/wiki/List-of-sources
     sources = cmp.config.sources({
-        { name = 'nvim_lsp' },
-        { name = 'luasnip' },
+        { name = 'nvim_lsp',                max_item_count = 10 },
+        { name = 'luasnip',                 max_item_count = 10 },
         { name = 'nvim_lsp_signature_help', max_item_count = 10 },
         { name = 'path',                    max_item_count = 10 },
         { name = 'buffer',                  max_item_count = 10 },
-        { name = 'cmdline',                 max_item_count = 10 },
         -- Do we want spelling suggestions? I'll leave it in here
         -- just in case, but it can get pretty intense.
         -- { name = 'spell',                   max_item_count = 10 },
