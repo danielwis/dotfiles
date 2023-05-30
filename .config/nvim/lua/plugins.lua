@@ -42,6 +42,9 @@ Plug 'lukas-reineke/indent-blankline.nvim'
 -- LSP Support
 Plug 'neovim/nvim-lspconfig'
 
+-- Allow external (non-LSP) programs to hook into LSP API
+Plug 'jose-elias-alvarez/null-ls.nvim'
+
 -- Autocompletion and its sources
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-buffer'
