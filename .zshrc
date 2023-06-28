@@ -36,7 +36,8 @@ _comp_options+=(globdots) # Include hidden files
 alias p="sudo pacman"
 alias bat="bat -p --paging=never"
 alias cl="clear"
-alias cds='cd "`find ~ -type d | grep -v \"\.git\" | fzf`"'
+# For pruning, see https://unix.stackexchange.com/a/634037
+alias cds='cd "`find ~ -type d \! \( -path ~/.local -prune \) | grep -v \"\.git\" | fzf`"'
 alias here='srcfile=$(find ~ -type f | grep -v "\.git" | fzf --preview "bat --style=numbers --color=always --line-range :500 {}") && [ $srcfile ] && mv $srcfile .'
 alias hist='cat ~/.histfile | fzf'
 alias vimf='vim $(fzf --preview "bat --style=numbers --color=always --line-range :500 {}")'
