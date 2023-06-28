@@ -11,8 +11,7 @@ Plug 'tpope/vim-repeat' -- Extend the . command to things like vim-surround
 Plug 'tpope/vim-sleuth' -- Automatically set tab width/spaces
 Plug 'romainl/vim-cool' -- No more lingering hl after search
 Plug 'inkarkat/vim-ReplaceWithRegister' -- Replace motion with register without intermediate deletion
--- Plug 'gaoDean/autolist.nvim'          -- Make lists better (autocomplete list items, tab for sublists etc)
--- Add back when ultisnips tab conflict is fixed
+Plug 'echasnovski/mini.ai' -- Extend `i` and `a` text objects
 
 Plug 'zegervdv/nrpattern.nvim' -- Extend <C-x> and <C-a> functionality to custom patterns etc
 Plug 'rcarriga/nvim-notify' -- Notifications
@@ -50,6 +49,7 @@ Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-nvim-lua'
 Plug 'hrsh7th/cmp-nvim-lsp-signature-help'
 Plug 'f3fora/cmp-spell'
 

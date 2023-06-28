@@ -55,16 +55,25 @@ cmp.setup({
         end, { "i", "s" }),
     }),
     -- https://github.com/hrsh7th/nvim-cmp/wiki/List-of-sources
+    -- A source group below another won't show until there are
+    -- no completion items for the one above.
     sources = cmp.config.sources({
+        { name = 'nvim_lua',                max_item_count = 10 },
         { name = 'nvim_lsp',                max_item_count = 10 },
         { name = 'luasnip',                 max_item_count = 10 },
         { name = 'nvim_lsp_signature_help', max_item_count = 10 },
-        { name = 'path',                    max_item_count = 10 },
-        { name = 'buffer',                  max_item_count = 10 },
         -- Do we want spelling suggestions? I'll leave it in here
         -- just in case, but it can get pretty intense.
         -- { name = 'spell',                   max_item_count = 10 },
     }, {
+        { name = 'path', },
         { name = 'buffer' },
-    })
+    }),
+
+  experimental = {
+    ghost_text = true,
+  },
+  view = {
+    entries = 'native'
+  },
 })

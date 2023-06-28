@@ -22,7 +22,8 @@ vim.keymap.set('n', '<leader>f', function() vim.lsp.buf.format() end)
 -- TODO: Checkout Quickfix (and implement Primeagen keymaps for it
 
 -- Replace all instaces of the word underneath the cursor
-vim.keymap.set("n", "<leader>r", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+-- TODO: Make this available only if LSP is not running. Right now, just rely on LSP.
+-- vim.keymap.set("n", "<leader>r", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
 -- Make current file executable (for scripts etc)
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
