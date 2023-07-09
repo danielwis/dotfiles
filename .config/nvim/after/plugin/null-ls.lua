@@ -7,7 +7,9 @@ local sources = {
   nls.builtins.formatting.isort,
   -- shell
   nls.builtins.formatting.shfmt,
-  nls.builtins.diagnostics.shellcheck
+  nls.builtins.diagnostics.shellcheck,
+  -- markdown, yaml etc.
+  nls.builtins.formatting.prettierd,
 }
 
 nls.setup({ sources = sources })

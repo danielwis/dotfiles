@@ -60,6 +60,8 @@ Plug 'hrsh7th/cmp-nvim-lua'
 Plug 'hrsh7th/cmp-nvim-lsp-signature-help'
 Plug 'f3fora/cmp-spell'
 
+Plug('iamcco/markdown-preview.nvim', { ['do'] = 'cd app && yarn install' })
+
 -- Snippets
 Plug 'saadparwaiz1/cmp_luasnip' -- Link autocomplete to snippets
 Plug 'L3MON4D3/LuaSnip'
