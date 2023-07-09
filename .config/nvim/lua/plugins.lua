@@ -41,6 +41,13 @@ Plug 'lukas-reineke/indent-blankline.nvim'
 -- LSP Support
 Plug 'neovim/nvim-lspconfig'
 
+-- LSP context hints in winbar
+Plug 'SmiteshP/nvim-navic'
+
+-- LSP navigation
+Plug "SmiteshP/nvim-navbuddy"
+Plug "MunifTanjim/nui.nvim" -- UI library dependency for the above
+
 -- Allow external (non-LSP) programs to hook into LSP API
 Plug 'jose-elias-alvarez/null-ls.nvim'
 
