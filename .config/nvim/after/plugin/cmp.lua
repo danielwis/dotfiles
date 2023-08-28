@@ -50,14 +50,28 @@ cmp.setup({
             end
         end, { "i", "s" }),
     }),
+    sorting = {
+        comparators = {
+            cmp.config.compare.offset,
+            cmp.config.compare.exact,
+            cmp.config.compare.score,
+            cmp.config.compare.recently_used,
+            cmp.config.compare.locality,
+            cmp.config.compare.kind,
+            cmp.config.compare.sort_text,
+            cmp.config.compare.length,
+            cmp.config.compare.order,
+        },
+    },
     -- https://github.com/hrsh7th/nvim-cmp/wiki/List-of-sources
     -- A source group below another won't show until there are
     -- no completion items for the one above.
+    -- Also, unintuitively, items lower in the list have higher priority.
     sources = cmp.config.sources({
-        { name = 'nvim_lua',                max_item_count = 10 },
-        { name = 'nvim_lsp',                max_item_count = 10 },
-        { name = 'luasnip',                 max_item_count = 10 },
-        { name = 'nvim_lsp_signature_help', max_item_count = 10 },
+        { name = 'nvim_lua',                priority = 7, max_item_count = 10 },
+        { name = 'nvim_lsp',                priority = 5 },
+        { name = 'luasnip',                 priority = 3, max_item_count = 10 },
+        { name = 'nvim_lsp_signature_help', priority = 1, max_item_count = 10 },
         -- Do we want spelling suggestions? I'll leave it in here
         -- just in case, but it can get pretty intense.
         -- { name = 'spell',                   max_item_count = 10 },
@@ -66,10 +80,10 @@ cmp.setup({
         { name = 'buffer' },
     }),
 
-  experimental = {
-    ghost_text = true,
-  },
-  view = {
-    entries = 'native'
-  },
+    experimental = {
+        ghost_text = true,
+    },
+    view = {
+        entries = 'native'
+    },
 })
