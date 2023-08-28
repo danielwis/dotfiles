@@ -8,8 +8,7 @@
 # in the sudoers file (sudo EDITOR=vim visudo)
 sudo pacman -Syq > /dev/null
 # Get update count
-pacman -Qu | wc -l > update_tmp
-UPDATE_COUNT=$(cat update_tmp)
+UPDATE_COUNT=$(pacman -Qu | wc -l)
 
 echo "$UPDATES_ICON $UPDATE_COUNT"
 echo "$UPDATES_ICON $UPDATE_COUNT"
