@@ -15,8 +15,8 @@ PROMPT='%B%F{179}%n@%M%f in %F{9}%2~%f $(git_branch 2 -v)at %F{67}%T%f'$'\n''→
 # Vim keybind stuff
 bindkey -v
 bindkey "^[[3~" delete-char
-bindkey "^[[7~" beginning-of-line
-bindkey "^[[8~" end-of-line
+bindkey "^[[H" beginning-of-line
+bindkey "^[[F" end-of-line
 bindkey "^?" backward-delete-char
 
 # Something?
