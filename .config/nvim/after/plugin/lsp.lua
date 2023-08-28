@@ -1,3 +1,13 @@
+-- Don't slow down neovim on LSP start.
+-- See https://github.com/neovim/neovim/issues/23725#issuecomment-1561364086
+local ok, wf = pcall(require, "vim.lsp._watchfiles")
+if ok then
+    -- disable lsp watcher. Too slow on linux
+    wf._watchfunc = function()
+        return function() end
+    end
+end
+
 -- Setup language servers.
 local lspconfig = require('lspconfig')
 
