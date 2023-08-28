@@ -41,6 +41,9 @@ vim.api.nvim_create_autocmd('LspAttach', {
         vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, opts)
         vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
         vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, opts)
+        if vim.lsp.get_client_by_id(ev.data.client_id).server_capabilities.inlayHintProvider then
+            vim.lsp.inlay_hint(0, true)
+        end
     end
 })
 
@@ -57,6 +60,9 @@ local server_settings = {
                 globals = { 'vim', 'use' },
                 disable = { 'undefined-global' },
             },
+            hint = {
+                enable = true,
+            },
         },
     }
 }
@@ -64,6 +70,6 @@ local server_settings = {
 for _, lsp in pairs(servers) do
     lspconfig[lsp].setup {
         capabilities = capabilities,
-        settings = server_settings[lsp]
+        settings = server_settings[lsp],
     }
 end
