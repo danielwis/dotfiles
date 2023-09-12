@@ -27,3 +27,23 @@ vim.keymap.set('n', '<leader>f', function() vim.lsp.buf.format() end)
 
 -- Make current file executable (for scripts etc)
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
+
+-- [F]ix last spelling mistake and move back to current position.
+vim.keymap.set('i', '<C-f>', function()
+  if vim.opt.spell then
+    return "<C-g>u<Esc>[s1z=`]a<C-g>u"
+  else
+    return ""
+  end
+end, {expr = true, replace_keycodes = true})
+
+-- [F]ix last spelling mistake and move back to current position.
+vim.keymap.set('n', '<C-f>', function()
+  if vim.opt.spell then
+    -- Set a mark ([s]pell), jump to last spell error, fix w/ first suggestion and
+    -- jump back to mark (same cursor pos (`), not just line ('))
+    return "ms[s1z=`s"
+  else
+    return ""
+  end
+end, {expr = true, replace_keycodes = true})
