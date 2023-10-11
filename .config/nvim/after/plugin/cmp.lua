@@ -2,6 +2,20 @@
 local cmp = require("cmp")
 local luasnip = require("luasnip") -- For certain mappings (tab behaviour)
 
+-- Forget snippets once exited instead of jumping around in the buffer to old ones.
+-- https://github.com/L3MON4D3/LuaSnip/issues/258#issuecomment-1429989436
+vim.api.nvim_create_autocmd('ModeChanged', {
+  pattern = '*',
+  callback = function()
+    if ((vim.v.event.old_mode == 's' and vim.v.event.new_mode == 'n') or vim.v.event.old_mode == 'i')
+        and require('luasnip').session.current_nodes[vim.api.nvim_get_current_buf()]
+        and not require('luasnip').session.jump_active
+    then
+      require('luasnip').unlink_current()
+    end
+  end
+})
+
 cmp.setup({
     snippet = {
         expand = function(args)
