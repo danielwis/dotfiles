@@ -53,11 +53,12 @@ alias grep="grep --color=auto"
 # Other
 alias config='/usr/bin/git --git-dir=$HOME/.dots/ --work-tree=$HOME'
 alias passgen="< /dev/urandom tr -dc '!?#*-_=()/&%'A-Za-z0-9 | head -c 16; echo"
+alias testmic="arecord -vvv -f dat /dev/null"
 
 # Environment
 export BROWSER="firefox"
-export EDITOR="vim"
-export VISUAL="vim"
+export EDITOR="nvim"
+export VISUAL="nvim"
 # Jellyfin-webos manual installation
 export LG_WEBOS_TV_SDK_HOME="$HOME/Documents/"
 export WEBOS_CLI_TV="$LG_WEBOS_TV_SDK_HOME/CLI/bin"
@@ -79,7 +80,7 @@ export mkdirc
 
 edit() {
     [ -z $1 ] && fname=$(fzf --preview "bat --style=numbers --color=always --line-range :500 {}") || fname=$1
-    [ $fname ] && nvim $fname
+    [ $fname ] && $EDITOR $fname
 }
 export edit
 
