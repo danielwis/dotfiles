@@ -24,8 +24,8 @@ configuration {
     element-padding:             55px 60px;
     element-border-radius:       100%;
 
-    prompt-font:                 "FiraCode Nerd Font Bold Italic 72";
-    textbox-font:                "FiraCode Nerd Font 32";
+    prompt-font:                 "Liga SFMono Nerd Font Bold Italic 72";
+    textbox-font:                "Liga SFMono Nerd Font 32";
     element-text-font:           "feather 64";
 
     background-window:           black/5%;

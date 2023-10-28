@@ -28,7 +28,7 @@ configuration {
 }
 /*@import                          "shared/fonts.rasi"*/
 * {
-    font: "FiraCode Nerd Font 32";
+    font: "Liga SFMono Nerd Font 32";
 }
 
 /*****----- Main Window -----*****/
