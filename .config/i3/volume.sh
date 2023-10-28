@@ -3,7 +3,7 @@
 # Only one argument supported at the moment (inc, dec)
 [ $# = 1 ] || exit 1
 
-vol_threshold=50
+vol_threshold=100
 
 curr_vol=$(amixer sget Master | awk -F"[][%]" '/Left:/ {print $2}')
 
