@@ -5,8 +5,8 @@ SAVEHIST=10000
 
 # Options
 setopt autocd extendedglob # Don't need "cd" to cd
-setopt HIST_IGNORE_DUPS # Ignore duplicates only if directly after one another
-setopt PROMPT_SUBST # Turn on command substitution in prompt
+setopt HIST_IGNORE_DUPS    # Ignore duplicates only if directly after one another
+setopt PROMPT_SUBST        # Turn on command substitution in prompt
 
 # Prompt
 # Backup: PROMPT='%B%n@%M [%F{226}%T%f]'$'\n''[%2~] %F{2}$(git_branch)%f%b'
@@ -66,21 +66,23 @@ export WEBOS_CLI_TV="$LG_WEBOS_TV_SDK_HOME/CLI/bin"
 export PATH="$PATH:$HOME/scripts:$HOME/bin:$WEBOS_CLI_TV:$HOME/.local/bin"
 
 git_branch() {
-    # Backup: resp=$(git branch 2> /dev/null | grep \* | sed -e 's/* \(.*\)/(\1) /')
-    resp=$(git branch 2> /dev/null | grep \* | sed -e 's/* \(.*\)/\1 /')
-    [ $1 ] && col=$1 || col=2
-    col_resp="%F{$col}$resp%f"
-    [ $resp ] && echo -n "on $col_resp" || echo -n "$col_resp"
+  # Backup: resp=$(git branch 2> /dev/null | grep \* | sed -e 's/* \(.*\)/(\1) /')
+  resp=$(git branch 2>/dev/null | grep \* | sed -e 's/* \(.*\)/\1 /')
+  [ "$1" ] && col=$1 || col=2
+  col_resp="%F{$col}$resp%f"
+  [ "$resp" ] && echo -n "on $col_resp" || echo -n "$col_resp"
 }
 
+# Exported functions
+
 mkdirc() {
-    mkdir $1 && cd $1
+  mkdir "$1" && cd "$1"
 }
 export mkdirc
 
 edit() {
-    [ -z $1 ] && fname=$(fzf --preview "bat --style=numbers --color=always --line-range :500 {}") || fname=$1
-    [ $fname ] && $EDITOR $fname
+  [ -z "$1" ] && fname=$(fzf --preview "bat --style=numbers --color=always --line-range :500 {}") || fname=$1
+  [ "$fname" ] && "$EDITOR" "$fname"
 }
 export edit
 
@@ -91,24 +93,3 @@ source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 bindkey '^ ' autosuggest-accept
 
 
-
-# Change cursor shape for different vi modes. (Stolen from Luke Smith)
-# function zle-keymap-select {
-  # if [[ ${KEYMAP} == vicmd ]] ||
-     # [[ $1 = 'block' ]]; then
-    # echo -ne '\e[2 q'
-  # elif [[ ${KEYMAP} == main ]] ||
-       # [[ ${KEYMAP} == viins ]] ||
-       # [[ ${KEYMAP} = '' ]] ||
-       # [[ $1 = 'beam' ]]; then
-    # echo -ne '\e[5 q'
-  # fi
-# }
-# zle -N zle-keymap-select
-# zle-line-init() {
-    # zle -K viins # initiate `vi insert` as keymap (can be removed if `bindkey -V` has been set elsewhere)
-    # echo -ne "\e[5 q"
-# }
-# zle -N zle-line-init
-# echo -ne '\e[5 q' # Use beam shape cursor on startup.
-# preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
