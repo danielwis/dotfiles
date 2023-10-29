@@ -68,9 +68,9 @@ mainbox {
 /*****----- Inputbar -----*****/
 inputbar {
     enabled:                     true;
-    spacing:                     10px;
-    margin:                      0% 28%;
-    padding:                     10px;
+    spacing:                     20px;
+    margin:                      2% 28%;
+    padding:                     20px;
     border:                      1px solid;
     border-radius:               6px;
     border-color:                white / 25%;
@@ -135,7 +135,7 @@ element {
     enabled:                     true;
     spacing:                     15px;
     margin:                      0px;
-    padding:                     35px 10px;
+    padding:                     60px 100px;
     border:                      0px solid;
     border-radius:               15px;
     border-color:                @selected;
@@ -155,7 +155,7 @@ element selected.normal {
 element-icon {
     background-color:            transparent;
     text-color:                  inherit;
-    size:                        72px;
+    size:                        200px;
     cursor:                      inherit;
 }
 element-text {
