@@ -76,7 +76,7 @@ bindsym $mod+Return exec alacritty
 bindsym $mod+Shift+q kill
 
 # Start rofi in run mode
-bindsym $mod+d exec --no-startup-id rofi -show run -display-run ":"
+bindsym $mod+d exec --no-startup-id rofi -show drun " "
 bindsym $mod+a exec --no-startup-id ~/scripts/zathura-open.sh
 bindsym $mod+space exec --no-startup-id tmpclipboard="$HOME/tmpclipboard" && alacritty -e sh -c "find ~ -type d | sort -u | fzf | tr -d '\n' > $tmpclipboard" && xclip -selection "primary" $tmpclipboard && rm $tmpclipboard
 
