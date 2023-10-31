@@ -52,7 +52,7 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities()
 local servers = { 'pyright', 'ruff_lsp', 'rust_analyzer', 'lua_ls' }
 local server_settings = {
     ["rust_analyzer"] = {
-        ['rust-analyzer'] = {},
+        ['rust-analyzer'] = { check = { command = "clippy" } },
     },
     ["lua_ls"] = {
         Lua = {
