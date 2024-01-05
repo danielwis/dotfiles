@@ -38,7 +38,7 @@ alias bat="bat -p --paging=never"
 alias cl="clear"
 # For pruning, see https://unix.stackexchange.com/a/634037
 alias cds='cd "`find ~ -type d \! \( -path ~/.local -prune \) | grep -v \"\.git\" | fzf`"'
-alias here='srcfile=$(find ~ -type f | grep -v "\.git" | fzf --preview "bat --style=numbers --color=always --line-range :500 {}") && [ $srcfile ] && mv $srcfile .'
+alias here='srcfile=$(select_file) && [ $srcfile ] && mv $srcfile .'
 alias hist='cat ~/.histfile | fzf'
 alias vimf='vim $(fzf --preview "bat --style=numbers --color=always --line-range :500 {}")'
 alias up='cd ..'
@@ -65,6 +65,21 @@ export WEBOS_CLI_TV="$LG_WEBOS_TV_SDK_HOME/CLI/bin"
 # ... and then PATH
 export PATH="$PATH:$HOME/scripts:$HOME/bin:$WEBOS_CLI_TV:$HOME/.local/bin"
 
+# Utility functions
+select_any() {
+  if [ $1 = "plain" ]; then
+    find ~ \! \( -path ~/.local -prune \) | grep -v \"\.git\" | fzf
+  else
+    find ~ | grep -v "\.git" | fzf --preview "bat --style=numbers --color=always --line-range :500 {}"
+  fi
+}
+select_file() {
+  find ~ -type f \! \( -path ~/.local -prune \) | grep -v "\.git" | fzf --preview "bat --style=numbers --color=always --line-range :500 {}"
+}
+select_directory() {
+  find ~ -type d \! \( -path ~/.local -prune \) | grep -v \"\.git\" | fzf
+}
+
 git_branch() {
   # Backup: resp=$(git branch 2> /dev/null | grep \* | sed -e 's/* \(.*\)/(\1) /')
   resp=$(git branch 2>/dev/null | grep \* | sed -e 's/* \(.*\)/\1 /')
@@ -85,6 +100,26 @@ edit() {
   [ "$fname" ] && "$EDITOR" "$fname"
 }
 export edit
+
+move() {
+  if [ $# -gt 1 ]; then
+    mv "$@"
+  elif [ $# = 1 ]; then
+    src="$1"
+  else
+    # Only select source if not already given
+    src="$(select_any)"
+  fi
+  # Always select target
+  dest="$(select_directory)"
+
+  # Validate source
+  if [ -d "$src" ] || [ -f "$src" ]; then
+    # Validate dest and move
+    [ -d "$dest" ] && mv -v "$src" "$dest"
+  fi
+}
+export move
 
 # Syntax highlighting
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
