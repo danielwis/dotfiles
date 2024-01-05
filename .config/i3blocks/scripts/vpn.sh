@@ -2,7 +2,7 @@
 
 . $(dirname $0)/vars.sh
 
-DEFAULT_IFC="mvd"
+DEFAULT_IFC="vpn"
 IFC=$(sudo wg show | sed 's/\x1B\[[0-9;]*[JKmsu]//g' | head -n 1 | sed 's/interface: //' | tr -d -c "A-Za-z0-9_-")
 
 if [ "$button" = "1" ]; then
