@@ -1,0 +1,6 @@
+{{ if eq .chezmoi.hostname "desktop" }}
+.config/i3blocks/scripts/battery.sh
+.config/i3blocks/scripts/brightness.sh
+.config/i3blocks/scripts/wifi.sh
+./scripts/executable_brightness_control.sh
+{{ end }}
