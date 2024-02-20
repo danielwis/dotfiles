@@ -1,3 +1,5 @@
 image/*; sxiv %s &; test=test -n "$DISPLAY";
 application/pdf; zathura %s; test=test -n "$DISPLAY";
-text/html; w3m -I %{charset} -T text/html; copiousoutput;
+# https://unix.stackexchange.com/a/626591
+# TODO add lua filter for "unescaping" things like `&gt;`
+text/html; pandoc -f html -t gfm-raw_html --wrap=none; copiousoutput
