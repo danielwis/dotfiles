@@ -48,7 +48,7 @@ URxvt.letterSpace: -1
 ! Jump one word forward/back
 URxvt.keysym.Control-Right: \033[1;5C
 URxvt.keysym.Control-Left: \033[1;5D
-
 {{ if eq .chezmoi.hostname "thinkpad" }}
+! Scale screen elements as they're ridiculously small on a 4K screen
 Xft.dpi: 192
-{{ end }}
+{{ end -}}

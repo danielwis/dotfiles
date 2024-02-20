@@ -65,7 +65,7 @@ export WEBOS_CLI_TV="$LG_WEBOS_TV_SDK_HOME/CLI/bin"
 # ... and then PATH
 export PATH="$PATH:$HOME/scripts:$HOME/bin:$WEBOS_CLI_TV:$HOME/.local/bin"
 twmn_path="/home/daniel/Documents/kth/amanuens/en2720/twmn/src/lib/python/"
-canvas_path="/home/daniel/Documents/kth/amanuens/en2720/canvas-automation/lib/python/"
+canvas_path="/home/daniel/Documents/kth/amanuens/en2720/twmn-ctf/lib/python/"
 export PYTHONPATH="$PYTHONPATH:$twmn_path:$canvas_path"
 
 # Utility functions

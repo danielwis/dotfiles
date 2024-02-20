@@ -62,9 +62,11 @@ bindsym XF86AudioLowerVolume exec --no-startup-id ~/.config/i3/volume.sh dec && 
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
+{{- if eq .chezmoi.hostname "thinkpad" }}
 # Use custom script to change brightness
 bindsym XF86MonBrightnessDown exec --no-startup-id ~/scripts/brightness_control.sh - && pkill -SIGRTMIN+10 i3blocks && $refresh_i3status
 bindsym XF86MonBrightnessUp exec --no-startup-id ~/scripts/brightness_control.sh + && pkill -SIGRTMIN+10 i3blocks && $refresh_i3status
+{{- end }}
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod

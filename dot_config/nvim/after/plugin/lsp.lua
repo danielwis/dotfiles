@@ -49,7 +49,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
 -- Set up lspconfig.
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
-local servers = { 'pyright', 'ruff_lsp', 'rust_analyzer', 'lua_ls', 'clojure_lsp', 'asm_lsp', 'clangd'} -- todo uninstall asm with cargo
+local servers = { 'pyright', 'ruff_lsp', 'rust_analyzer', 'lua_ls', 'clangd' }
 local server_settings = {
     ["rust_analyzer"] = {
         ['rust-analyzer'] = { check = { command = "clippy" } },

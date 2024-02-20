@@ -3,11 +3,11 @@
 # Only one argument supported at the moment (inc, dec)
 [ $# = 1 ] || exit 1
 
-{{ if eq .chezmoi.hostname "desktop" }}
+{{ if eq .chezmoi.hostname "desktop" -}}
 vol_threshold=50
-{{ else }}
+{{- else -}}
 vol_threshold=100
-{{ end }}
+{{- end }}
 
 curr_vol=$(amixer sget Master | awk -F"[][%]" '/Left:/ {print $2}')
 
