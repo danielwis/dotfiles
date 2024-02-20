@@ -1,0 +1,29 @@
+# vi: ft=neomuttrc
+set imap_user = "dwilli@kth.se"
+set imap_pass = "`pass KTH/webmail.kth.se`"
+set folder = "imaps://dwilli@webmail.kth.se:993/"
+
+# Outlook mailbox names
+set spoolfile = "+Inbox"
+set record = "+Sent Items"
+set trash = "+Deleted"
+set postponed = "+Drafts"
+
+named-mailboxes "[KTH] Inbox" $spoolfile
+named-mailboxes "[KTH] Sent" $record
+
+# Send options
+set realname = "Daniel Williams"
+set from = "dwilli@kth.se"
+set smtp_url = "smtp://dwilli@smtp.kth.se:587"
+set smtp_pass = $imap_pass
+set ssl_starttls = yes
+set ssl_force_tls = yes
+# set sendmail = "command-to-send-mail"
+# set signature = "signature-file"
+
+# Colour the status bar based on account
+# color status blue white
+
+## Hook -- IMPORTANT!
+account-hook $folder "set imap_user=dwilli@kth.se"

@@ -1,0 +1,58 @@
+# All of the options below are documented at http://www.mutt.org/doc/manual/
+
+## General options
+set header_cache = "~/.cache/mutt"
+set message_cachedir= "~/.cache/mutt/messages"
+set mbox_type=Maildir
+
+# Customisation
+set editor='nvim'
+set date_format="!%b %d, %Y at %I:%M%p %Z"
+set sort = threads
+set sort_aux = reverse-last-date-received
+set sidebar_visible
+set sidebar_format = "%D %<N?(%N)>%* %S"
+set mail_check_stats # calculate message statistics of a mailbox while polling for new mail
+set sleep_time = 0 # don't pause for info messages while switching folders
+set wait_key = no # only do the "press any key" thing if exit status != 0
+set pager_stop=yes # stop at the end instead of going to the next email
+source ~/.config/neomutt/colours.rc
+
+# headers to show
+# ignore *                        #ignore all headers
+# unignore from: to: cc: date: subject: #show only these
+# hdr_order from: to: cc: date: subject:#and in this order
+
+## General IMAP stuff
+set imap_condstore=yes # faster imap (see http://mutt.org/relnotes/1.11/)
+set imap_qresync=yes # faster imap (see http://mutt.org/relnotes/1.11/)
+unset imap_passive # Allow Mutt to open a new IMAP connection automatically.
+set timeout = 10 # how many seconds to idle before starting background tasks
+set imap_keepalive = 300 # (time in seconds)
+set mail_check = 60 # how often to check for new mail (in seconds)
+# set imap_check_subscribed # check only subscribed mailboxes
+
+# Sending mail
+set send_charset="utf-8"
+set fast_reply=yes # use defaults for recipient, subject etc.
+set include=yes # automatically quote previous message
+set edit_headers=yes
+# "H" for "convert to [H]TML". Requires pandoc.
+macro compose H "F pandoc -s -f gfm -t html<enter>y^T^Utext/html; charset=utf-8<enter>"
+
+# Personal account
+source ~/.config/neomutt/account.outlook
+folder-hook $folder 'source ~/.config/neomutt/account.outlook'
+
+# KTH
+source ~/.config/neomutt/account.kth
+folder-hook $folder 'source ~/.config/neomutt/account.kth'
+
+
+# HTML Email rendering
+set mailcap_path   = ~/.config/neomutt/mailcap
+auto_view text/html
+alternative_order text/plain text/enriched text/html
+
+# Keybindings
+source ~/.config/neomutt/keybinds.rc

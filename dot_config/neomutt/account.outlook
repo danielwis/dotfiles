@@ -1,0 +1,28 @@
+# vi: ft=neomuttrc
+set imap_user = "daniel_williams@live.com"
+set imap_pass = "`pass show login.live.com`"
+set folder = "imaps://daniel_williams@live.com@outlook.office365.com:993/"
+
+set spoolfile = +Inbox
+unset record # outlook seems to auto-save sent mail
+# set record = "+Sent"
+set trash = "+Deleted"
+set postponed = "+Drafts"
+
+named-mailboxes "[Personal] Inbox" $spoolfile
+named-mailboxes "[Personal] Sent" +Sent
+
+set realname = "Daniel Williams"
+set from = "daniel_williams@live.com"
+set smtp_url = "smtp://$imap_user@smtp-mail.outlook.com:587"
+set smtp_pass = $imap_pass
+set ssl_starttls = yes
+set ssl_force_tls = yes
+# set sendmail = "command-to-send-mail"
+# set signature = "signature-file"
+
+# Colour the status bar based on account
+# color status blue white
+
+## Hook -- IMPORTANT!
+account-hook $folder "set imap_user=daniel_williams@live.com"
