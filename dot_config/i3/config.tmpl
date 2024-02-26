@@ -92,8 +92,8 @@ bindsym $mod+Shift+v exec ~/scripts/screen_recorder.sh
 # Screenshot to file
 bindsym Print exec maim ~/Pictures/screenshots/$(date +%F_%s).png && notify-send "Screenshot taken!" "Saved as ~/Pictures/screenshots/$(date +%F_%s).png"
 
-# Open ranger (file browser)
-bindsym $mod+e exec i3-sensible-terminal -e ranger
+# Emoji picker
+bindsym $mod+e exec ~/scripts/emoji-picker.sh
 
 # change focus
 # bindsym $mod+j focus left
