@@ -23,7 +23,7 @@ bindkey "^?" backward-delete-char
 zstyle :compinstall filename '/home/daniel/.zshrc'
 
 # Tab completion (incl. exercism)
-export fpath=(~/.config/exercism $fpath)
+export fpath=(~/.config/exercism ~/.zsh/completion $fpath)
 # Case insensitive tab completion from both "ends" of the word (so "bar" can autocomplete to "foobar").
 # Tries to complete the word as typed first, then if it doesn't find a match, tries to ignore case.
 # Thanks to https://stackoverflow.com/questions/24226685/have-zsh-return-case-insensitive-auto-complete-matches-but-prefer-exact-matches
@@ -128,6 +128,9 @@ export move
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # Suggestions
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+# Fuzzy-finding history items (https://github.com/joshskidmore/zsh-fzf-history-search)
+source /usr/share/zsh/plugins/zsh-fzf-history-search/zsh-fzf-history-search.zsh
+
 bindkey '^ ' autosuggest-accept
 
 
