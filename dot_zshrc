@@ -34,22 +34,17 @@ _comp_options+=(globdots) # Include hidden files
 # --- Aliases ---
 # General
 alias p="sudo pacman"
-alias bat="bat -p --paging=never"
-alias cl="clear"
 # For pruning, see https://unix.stackexchange.com/a/634037
 alias cds='cd "`find ~ -type d \! \( -path ~/.local -prune \) | grep -v \"\.git\" | fzf`"'
 alias here='srcfile=$(select_file) && [ $srcfile ] && mv $srcfile .'
-alias hist='cat ~/.histfile | fzf'
-alias vimf='vim $(fzf --preview "bat --style=numbers --color=always --line-range :500 {}")'
 alias up='cd ..'
-alias vpn='cd ~/Documents/kth/year-4/en2720/ && sudo bash vpn-connect.sh --disconnect && sleep 1 && sudo bash vpn-connect.sh'
 # Git
 alias gs="git status"
 alias gl="git log --oneline"
-alias up='cd ..'
 # Prettifying
 alias ls="ls -ha --color=auto --group-directories-first"
 alias grep="grep --color=auto"
+alias bat="bat -p --paging=never"
 # Other
 alias config='/usr/bin/git --git-dir=$HOME/.dots/ --work-tree=$HOME'
 alias passgen="< /dev/urandom tr -dc '!?#*-_=()/&%'A-Za-z0-9 | head -c 16; echo"
@@ -132,5 +127,3 @@ source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/zsh/plugins/zsh-fzf-history-search/zsh-fzf-history-search.zsh
 
 bindkey '^ ' autosuggest-accept
-
-
