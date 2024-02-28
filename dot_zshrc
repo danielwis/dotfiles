@@ -34,8 +34,7 @@ _comp_options+=(globdots) # Include hidden files
 # --- Aliases ---
 # General
 alias p="sudo pacman"
-# For pruning, see https://unix.stackexchange.com/a/634037
-alias cds='cd "`find ~ -type d \! \( -path ~/.local -prune \) | grep -v \"\.git\" | fzf`"'
+alias cds='cd $(select_directory)'
 alias here='srcfile=$(select_file) && [ $srcfile ] && mv $srcfile .'
 alias up='cd ..'
 # Git
@@ -46,7 +45,6 @@ alias ls="ls -ha --color=auto --group-directories-first"
 alias grep="grep --color=auto"
 alias bat="bat -p --paging=never"
 # Other
-alias config='/usr/bin/git --git-dir=$HOME/.dots/ --work-tree=$HOME'
 alias passgen="< /dev/urandom tr -dc '!?#*-_=()/&%'A-Za-z0-9 | head -c 16; echo"
 alias testmic="arecord -vvv -f dat /dev/null"
 
@@ -75,7 +73,21 @@ select_file() {
   find ~ -type f \! \( -path ~/.local -prune \) | grep -v "\.git" | fzf --preview "bat --style=numbers --color=always --line-range :500 {}"
 }
 select_directory() {
-  find ~ -type d \! \( -path ~/.local -prune \) | grep -v \"\.git\" | fzf
+  # See https://www.theunixschool.com/2012/07/find-command-15-examples-to-exclude.html for more info
+  # find all directories in $HOME
+      # where the name is not ".config"
+      # but starts with a "."
+      # or is called one of the following
+      # [...]
+    # and ignore/don't look inside them
+    # print any directories not matched above
+  find ~ -type d \( \
+      \! -name ".config" \
+      -a -name ".*" \
+      -o -name "google-cloud-sdk" \
+      -o -name "node_modules" \
+    \) -prune \
+    -o -type d -print | fzf
 }
 
 git_branch() {
