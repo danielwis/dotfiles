@@ -38,7 +38,7 @@ set fast_reply=yes # use defaults for recipient, subject etc.
 set include=yes # automatically quote previous message
 set edit_headers=yes
 # "H" for "convert to [H]TML". Requires pandoc.
-macro compose H "F pandoc -s -f gfm -t html<enter>y^T^Utext/html; charset=utf-8<enter>"
+macro compose H "F pandoc -f gfm -t html<enter>y^T^Utext/html; charset=utf-8<enter>"
 
 # Personal account
 source ~/.config/neomutt/account.outlook
