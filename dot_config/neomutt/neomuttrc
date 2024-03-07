@@ -16,6 +16,8 @@ set mail_check_stats # calculate message statistics of a mailbox while polling f
 set sleep_time = 0 # don't pause for info messages while switching folders
 set wait_key = no # only do the "press any key" thing if exit status != 0
 set pager_stop=yes # stop at the end instead of going to the next email
+unset markers # the + at the beginning of wrapped lines
+set menu_scroll # smooth scrolling rather than full page redraw
 source ~/.config/neomutt/colours.rc
 
 # headers to show
