@@ -30,8 +30,7 @@ set imap_condstore=yes # faster imap (see http://mutt.org/relnotes/1.11/)
 set imap_qresync=yes # faster imap (see http://mutt.org/relnotes/1.11/)
 unset imap_passive # Allow Mutt to open a new IMAP connection automatically.
 set timeout = 10 # how many seconds to idle before starting background tasks
-set imap_keepalive = 300 # (time in seconds)
-set mail_check = 60 # how often to check for new mail (in seconds)
+set mail_check = 30 # how often to check for new mail (in seconds)
 # set imap_check_subscribed # check only subscribed mailboxes
 
 # Sending mail
@@ -39,8 +38,6 @@ set send_charset="utf-8"
 set fast_reply=yes # use defaults for recipient, subject etc.
 set include=yes # automatically quote previous message
 set edit_headers=yes
-# "H" for "convert to [H]TML". Requires pandoc.
-macro compose H "F pandoc -f gfm -t html<enter>y^T^Utext/html; charset=utf-8<enter>"
 
 # Personal account
 source ~/.config/neomutt/account.outlook

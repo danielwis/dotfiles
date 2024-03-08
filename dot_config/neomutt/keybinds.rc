@@ -33,6 +33,9 @@ bind pager				H   			display-toggle-weed
 bind attach,index,pager \CD 			half-down
 bind attach,index,pager	\CU 			half-up
 
+# "H" for "convert to [H]TML". Requires pandoc.
+macro compose H "F pandoc -f gfm -t html<enter>y^T^Utext/html; charset=utf-8<enter>"
+
 # call urlview to extract URLs out of a message
 macro index,pager       gx              "<pipe-message>urlscan<Enter>"
 macro attach,compose    gx              "<pipe-entry>urlscan<Enter>"
