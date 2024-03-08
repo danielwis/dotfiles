@@ -63,14 +63,24 @@ export PYTHONPATH="$PYTHONPATH:$twmn_path:$canvas_path"
 
 # Utility functions
 select_any() {
-  if [ $1 = "plain" ]; then
-    find ~ \! \( -path ~/.local -prune \) | grep -v \"\.git\" | fzf
-  else
-    find ~ | grep -v "\.git" | fzf --preview "bat --style=numbers --color=always --line-range :500 {}"
-  fi
+  # See the comment in `select_directory`. The only changes here are on the last line
+  find ~ -type d \( \
+      \! -name ".config" \
+      -a -name ".*" \
+      -o -name "google-cloud-sdk" \
+      -o -name "node_modules" \
+    \) -prune \
+    -o -print | fzf
 }
 select_file() {
-  find ~ -type f \! \( -path ~/.local -prune \) | grep -v "\.git" | fzf --preview "bat --style=numbers --color=always --line-range :500 {}"
+  # See the comment in `select_directory`. The only changes here are on the last line
+  find ~ -type d \( \
+      \! -name ".config" \
+      -a -name ".*" \
+      -o -name "google-cloud-sdk" \
+      -o -name "node_modules" \
+    \) -prune \
+    -o -type f -print | fzf --preview "bat --style=numbers --color=always --line-range :500 {}"
 }
 select_directory() {
   # See https://www.theunixschool.com/2012/07/find-command-15-examples-to-exclude.html for more info
