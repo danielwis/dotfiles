@@ -1,0 +1,29 @@
+# Fonts
+font = Liga SFMono Nerd Font
+font-size = 14
+
+# Window theming
+width = 30%
+height = 12%
+corner-radius = 5
+
+# Window positioning
+anchor = top
+margin-top = 2%
+
+# outside of border
+outline-width = 1
+border-width = 2
+border-color = #315528
+
+padding-left = 2%
+padding-top = 1%
+padding-right = 0
+padding-bottom = 0
+
+background-color = #11111199
+text-color = #ffffff
+selection-color = #64996c
+selection-match-color = #86bb8e
+
+hide-cursor = true

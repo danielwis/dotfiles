@@ -4,7 +4,11 @@
     ### Display ###
 
     # Which monitor should the notifications be displayed on.
-    monitor = 0
+    {{ if eq .chezmoi.hostname "desktop" -}}
+    monitor = HDMI-A-1
+    {{- else if eq .chezmoi.hostname "thinkpad" -}}
+    monitor = eDP-1
+    {{- end }}
 
     # Display notification on focused monitor.  Possible modes are:
     #   mouse: follow mouse pointer
@@ -17,7 +21,9 @@
     #
     # If this option is set to mouse or keyboard, the monitor option
     # will be ignored.
-    follow = mouse
+    #
+    # Enable this if it ever gets supported in Wayland
+    # follow = mouse
 
     ### Geometry ###
 
@@ -33,7 +39,7 @@
     origin = top-right
 
     # Offset from the origin
-    offset = 10x50
+    offset = 20x20
 
     # Scale factor. It is auto-detected if value is 0.
     scale = 0
@@ -233,7 +239,7 @@
     # corners.
     # The radius will be automatically lowered if it exceeds half of the
     # notification height to avoid clipping text and/or icons.
-    corner_radius = 0
+    corner_radius = 5
 
     # Ignore the dbus closeNotification message.
     # Useful to enforce the timeout set by dunst configuration. Without this
@@ -296,29 +302,30 @@
 [urgency_low]
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the "#" and following would be interpreted as a comment.
-    background = "#222222"
-    foreground = "#888888"
-    timeout = 10
+    background = "#22222200"
+    foreground = "#fff"
+    frame_color = "#315528"
+    timeout = 5
     # Icon for notifications with low urgency, uncomment to enable
     #new_icon = /path/to/icon
 
 [urgency_normal]
-    background = "#222222"
+    background = "#22222200"
     ## background = "#C25A3C"
     ## foreground = "#77dd77"
-    foreground = "#ffffff"
-    frame_color = "#315528"
+    foreground = "#fff"
+    frame_color = "#bbbb22"
     timeout = 5
     # Icon for notifications with normal urgency, uncomment to enable
     #new_icon = /path/to/icon
 
 [urgency_critical]
-    background = "#900000"
-    foreground = "#ffffff"
+    background = "#22222200"
+    foreground = "#fff"
     frame_color = "#ff0000"
     timeout = 0
     # Icon for notifications with critical urgency, uncomment to enable
-    #new_icon = /path/to/icon
+    new_icon = $HOME/.config/dunst/exclamation-solid.png
 
 # Every section that isn't one of the above is interpreted as a rules to
 # override settings for certain messages.
