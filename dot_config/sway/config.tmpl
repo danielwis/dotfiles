@@ -1,6 +1,7 @@
 # Windows key as modifier
 set $mod Mod4
 
+# --- BASICS --- #
 {{ if eq .chezmoi.hostname "desktop" -}}
 # Force monitors to be ordered correctly (locking scrambles them otherwise)
 output HDMI-A-1 pos 0 0 res 1920x1080
@@ -13,9 +14,9 @@ input type:touchpad {
     middle_emulation enabled
     tap_button_map lmr
 }
+bindgesture swipe:3:left workspace next
+bindgesture swipe:3:right workspace prev
 {{- end }}
-
-# --- DECORATIONS & LOOKS --- #
 
 # Sway is in charge of input handling since there's no Xorg
 input * {
@@ -23,6 +24,8 @@ input * {
 }
 # Enable numlock on startup
 input type:keyboard xkb_numlock enabled
+
+# --- DECORATIONS & LOOKS --- #
 
 # Borders and gaps
 default_border none
