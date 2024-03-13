@@ -51,13 +51,15 @@ shadow_blur_radius 5
 shadow_color #000000FF
 # shadow_inactive_color #000000B0
 default_dim_inactive 0.15
+# Fix for sway <1.9 (see https://github.com/WillPower3309/swayfx/issues/195)
+dim_inactive_colors.unfocused #00000000
 
 layer_effects "notifications" "blur enable; shadows enable"
 # setting corner_radius here avoids the rectangular box behind it
 # that appears if we only set it in tofi
 layer_effects "launcher" "blur enable; shadows enable; corner_radius 5"
 # bar
-layer_effects "panel" "blur enable"
+layer_effects "panel" blur enable, corner_radius 5, shadows enable
 
 # Lock screen
 bindsym $mod+l exec ~/scripts/lockscreen
@@ -264,11 +266,18 @@ bar {
         swaybar_command swaybar
         status_command i3blocks
 
+        position top
+
+        separator_symbol '/'
+        height 22
+        gaps 12 20 0 20
+        status_padding 4
+
         # https://i3wm.org/docs/userguide.html#_colors
         colors {
-            background #11111199
+            background #22222299
             statusline #ffffff
-            separator #666666
+            separator #cccccc
 
             # Nice green: 315528
             # Syntax: class    border  bg      text
