@@ -125,14 +125,14 @@ bindsym $mod+space exec --no-startup-id \
     \) -prune \
     -o -type d -print | tofi --prompt-text "Path to copy: " | tr -d '\n' | wl-copy -p
 
-# Screenshot to clipboard
+# Screenshot
 # TODO: Click screenshot notif should save to location (--action=save or smth?)
-bindsym $mod+Shift+s exec grim -g "$(slurp)" - | wl-copy && notify-send "Screenshot taken!" "Saved to clipboard"
-bindsym $mod+Shift+v exec ~/scripts/screen_recorder.sh
-
-# Screenshot to file
+bindsym $mod+Shift+s exec ~/scripts/screenshot.sh copy # To clipboard
 # TODO: Open menu selector for which region to screenshot
-bindsym Print exec grim ~/Pictures/screenshots/$(date +%F_%s).png && notify-send "Screenshot taken!" "Saved as ~/Pictures/screenshots/$(date +%F_%s).png"
+bindsym Print exec ~/scripts/screenshot.sh full # To file
+
+# Screen recording
+bindsym $mod+Shift+v exec ~/scripts/screen_recorder.sh
 
 # Emoji picker
 bindsym $mod+e exec ~/scripts/emoji-picker.sh
