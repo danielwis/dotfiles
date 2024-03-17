@@ -218,11 +218,11 @@ bindsym $mod+Shift+0 move container to workspace $ws10
 
 # Automatically start applications in their respective workspaces
 assign [app_id="firefox"] $ws2
-# Discord seems to use xwayland, see
-# https://www.reddit.com/r/archlinux/comments/s2xvrn/getting_discord_to_run_natively_on_wayland/
-assign [class="discord"] $ws3
+# Requires ozone flags for native wayland
+assign [app_id="discord"] $ws3
 
-{{ if eq .chezmoi.hostname "desktop" -}}
+{{- if eq .chezmoi.hostname "desktop" }}
+
 # Window-specific workspaces
 # Run `swaymsg -t get_outputs` for a list of monitors
 workspace $ws1 output HDMI-A-1
