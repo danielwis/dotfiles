@@ -12,17 +12,18 @@ interval=900
 
 [vpn]
 command=~/.config/i3blocks/scripts/vpn.sh
-interval=10
+interval=once
 
 {{- if eq .chezmoi.hostname "thinkpad" }}
 
 [wifi-stats]
 command=~/.config/i3blocks/scripts/wifi.sh
-interval=2
+interval=5
 
 [battery]
 command=~/.config/i3blocks/scripts/battery.sh
-interval=5
+interval=60
+signal=10
 
 [brightness]
 command=~/.config/i3blocks/scripts/brightness.sh
