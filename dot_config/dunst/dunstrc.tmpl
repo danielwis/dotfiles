@@ -284,8 +284,8 @@
     # * context_all: Open context menu for all notifications.
     # These values can be strung together for each mouse event, and
     # will be executed in sequence.
-    mouse_left_click = close_current
-    mouse_middle_click = do_action, close_current
+    mouse_left_click = do_action, open_url, close_current
+    mouse_middle_click = close_current
     mouse_right_click = close_all
 
 # Experimental features that may or may not work correctly. Do not expect them
@@ -302,7 +302,7 @@
 [urgency_low]
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the "#" and following would be interpreted as a comment.
-    background = "#22222200"
+    background = "#22222266"
     foreground = "#fff"
     frame_color = "#22bb22"
     highlight = "#22bb22"
@@ -311,7 +311,7 @@
     #new_icon = /path/to/icon
 
 [urgency_normal]
-    background = "#22222200"
+    background = "#22222266"
     ## background = "#C25A3C"
     ## foreground = "#77dd77"
     foreground = "#fff"
@@ -322,7 +322,7 @@
     #new_icon = /path/to/icon
 
 [urgency_critical]
-    background = "#22222200"
+    background = "#22222266"
     foreground = "#fff"
     frame_color = "#bb2222"
     highlight = "#bb2222"
