@@ -27,22 +27,22 @@ input type:keyboard xkb_numlock enabled
 
 # --- DECORATIONS & LOOKS --- #
 
-# Borders and gaps
+# --- Borders and gaps --- #
 default_border none
 gaps inner 10
 gaps outer 10
 
-# Window title colours
+# --- Window title colours --- #
 client.focused "#64885c" "#64885c" "#ffffff"
 
-# Keybinds for "productivity mode" using smaller gaps
+# --- Keybinds for "productivity mode" using smaller gaps --- #
 bindsym $mod+p gaps inner current set 5; gaps outer current set 5
 bindsym $mod+Shift+p gaps inner current set 10; gaps outer current set 10
 
-# Background
+# --- Background --- #
 output "*" bg ~/.wallpapers/green-road.jpg fill
 
-# swayfx stuff
+# --- swayfx stuff --- #
 corner_radius 5
 blur on
 blur_passes 3
@@ -57,6 +57,10 @@ shadow_blur_radius 5
 shadow_color #000000FF
 # shadow_inactive_color #000000B0
 default_dim_inactive 0.15
+for_window {
+    [app_id="[Zz]oom"] dim_inactive 0
+    [class="net-runelite-launcher-Launcher"] dim_inactive 0
+}
 # Fix for sway <1.9 (see https://github.com/WillPower3309/swayfx/issues/195)
 dim_inactive_colors.unfocused #00000000
 
@@ -67,7 +71,7 @@ layer_effects "launcher" "blur enable; shadows enable; corner_radius 5"
 # bar
 layer_effects "panel" blur enable, corner_radius 5, shadows enable
 
-# Lock screen
+# --- Lock screen --- #
 bindsym $mod+l exec ~/scripts/lockscreen
 
 # Font for window titles. Will also be used by the bar unless a different font
@@ -78,15 +82,11 @@ font pango:Liga SFMono Nerd Font 8
 # https://wiki.archlinux.org/index.php/XDG_Autostart
 exec --no-startup-id dex --autostart --environment i3
 
-# xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
-# screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
-
 
 # --- KEYBINDS --- #
 
 
-# Volume
+# --- Volume --- #
 set $refresh_i3blocks pkill -SIGRTMIN+10 i3blocks
 bindsym XF86AudioRaiseVolume exec --no-startup-id ~/.config/i3/volume.sh inc && $refresh_i3blocks
 bindsym XF86AudioLowerVolume exec --no-startup-id ~/.config/i3/volume.sh dec && $refresh_i3blocks
@@ -94,7 +94,7 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ to
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3blocks
 
 {{- if eq .chezmoi.hostname "thinkpad" }}
-# Use custom script to change brightness
+# --- Brightness --- #
 bindsym XF86MonBrightnessDown exec --no-startup-id ~/scripts/brightness_control.sh - && pkill -SIGRTMIN+10 i3blocks && $refresh_i3status
 bindsym XF86MonBrightnessUp exec --no-startup-id ~/scripts/brightness_control.sh + && pkill -SIGRTMIN+10 i3blocks && $refresh_i3status
 {{- end }}
@@ -108,7 +108,7 @@ bindsym $mod+Return exec alacritty
 # Kill focused window
 bindsym $mod+Shift+q kill
 
-# Application launcher
+# --- Application launcher --- #
 bindsym $mod+d exec --no-startup-id tofi-drun | xargs swaymsg exec --
 # PDF opener
 #   -r to xargs avoids running zathura if piped output is empty
@@ -125,46 +125,43 @@ bindsym $mod+space exec --no-startup-id \
     \) -prune \
     -o -type d -print | tofi --prompt-text "Path to copy: " | tr -d '\n' | wl-copy -p
 
-# Screenshot
+# --- Screenshot --- #
 # TODO: Click screenshot notif should save to location (--action=save or smth?)
-bindsym $mod+Shift+s exec ~/scripts/screenshot.sh copy # To clipboard
+# To clipboard
+bindsym $mod+Shift+s exec ~/scripts/screenshot.sh copy
 # TODO: Open menu selector for which region to screenshot
-bindsym Print exec ~/scripts/screenshot.sh full # To file
+# To file
+bindsym Print exec ~/scripts/screenshot.sh full
 
-# Screen recording
+# --- Screen recording --- #
 bindsym $mod+Shift+v exec ~/scripts/screen_recorder.sh
 
-# Emoji picker
+# --- Emoji picker --- #
 bindsym $mod+e exec ~/scripts/emoji-picker.sh
 
-# Change focus
+# --- Change focus --- #
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
-# Move windows
+# --- Move windows --- #
 bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
-# Split in horizontal orientation
+# --- Splits and layout --- #
+# These target the focused container
 bindsym $mod+h split h
-
-# Split in vertical orientation
 bindsym $mod+v split v
-
-# Enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
+bindsym $mod+Shift+space floating toggle
 
-# Change container layout (stacked, tabbed, toggle split)
+# Change layout for all containers
 bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+o layout toggle split
-
-# Toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
 
 # Change focus between tiling / floating windows
 # bindsym $mod+space focus mode_toggle
@@ -179,8 +176,7 @@ bindsym $mod+Shift+space floating toggle
 # --- WORKSPACES --- #
 
 
-# Define names for default workspaces for which we configure key bindings later on.
-# We use variables to avoid repeating the names in multiple places. ws3 icon name is "comment[...]" on the nerd fonts' cheet sheet
+# --- Workspace names --- #
 set $ws1 "1:  "
 set $ws2 "2:  "
 set $ws3 "3:  "
@@ -192,7 +188,7 @@ set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
 
-# Switch to workspace
+# --- Switch workspace --- #
 bindsym $mod+1 workspace $ws1
 bindsym $mod+2 workspace $ws2
 bindsym $mod+3 workspace $ws3
@@ -204,7 +200,7 @@ bindsym $mod+8 workspace $ws8
 bindsym $mod+9 workspace $ws9
 bindsym $mod+0 workspace $ws10
 
-# Move focused container to workspace
+# --- Move focused container to workspace --- #
 bindsym $mod+Shift+1 move container to workspace $ws1
 bindsym $mod+Shift+2 move container to workspace $ws2
 bindsym $mod+Shift+3 move container to workspace $ws3
@@ -216,44 +212,40 @@ bindsym $mod+Shift+8 move container to workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
 
-# Automatically start applications in their respective workspaces
+# Assign a workspace to certain applications
 assign [app_id="firefox"] $ws2
-# Requires ozone flags for native wayland
+# Discord requires ozone flags for native wayland
 assign [app_id="discord"] $ws3
 
 {{- if eq .chezmoi.hostname "desktop" }}
 
-# Window-specific workspaces
+# --- Window-specific workspaces --- #
 # Run `swaymsg -t get_outputs` for a list of monitors
 workspace $ws1 output HDMI-A-1
 workspace $ws2 output HDMI-A-1
 workspace $ws3 output HDMI-A-2
 {{- end }}
 
-# Move workspace to different screen
+# --- Move workspace to different screen --- #
 bindsym $mod+Shift+l move workspace to output right
 bindsym $mod+Shift+h move workspace to output left
 
-# Window specific rules
+# --- Window specific rules --- #
 # TODO: Make Wayland-y (app_id)
 for_window {
     [class="net-runelite-launcher-Launcher"] floating enable
     [shell="xwayland"] title_format "%title [XWayland]"
     [app_id="Slack"] floating enable
-    [app_id="zoom"] floating enable
+    [app_id="[Zz]oom.*"] floating enable
     [app_id="neomutt"] floating enable
     [app_id="firefox"] inhibit_idle fullscreen
     [title="(?:Open|Save) (?:File|Folder|As)"] floating enable, resize set width 1000 height 700
 }
 
-# Reload the configuration file
-bindsym $mod+Shift+r reload
-# Exit sway (returns to TTY)
-bindsym $mod+Shift+e exec "swaynag -t warning -m 'Do you really want to exit sway? This will drop you back into the TTY and close all open windows.' -B 'Yes, exit sway' 'swaymsg exit'"
-
-# Window resizing (you can also use the mouse by $mod+right-click dragging)
+# --- Window resizing --- #
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
+        # You can also use the mouse by $mod+right-click dragging
 
         # Use arrow keys
         bindsym Left resize shrink width 10 px or 10 ppt
@@ -269,7 +261,7 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-# Bar
+# --- Bar --- #
 bar {
         swaybar_command swaybar
         status_command i3blocks
@@ -302,7 +294,7 @@ bar {
 bindswitch --locked --reload lid:on exec systemctl suspend
 {{- end }}
 
-# Autostart
+# --- Autostart --- #
 exec --no-startup-id alacritty
 exec gammastep
 exec firefox
@@ -313,5 +305,9 @@ exec swayidle -w \
 	timeout 900 'swaylock -f' \
 	resume 'swaymsg "output * power on"' \
     before-sleep 'swaylock -f'
+
+# --- Sway session and variables --- #
+bindsym $mod+Shift+r reload
+bindsym $mod+Shift+e exec "swaynag -t warning -m 'Do you really want to exit sway? This will drop you back into the TTY and close all open windows.' -B 'Yes, exit sway' 'swaymsg exit'"
 
 include /etc/sway/config.d/*
