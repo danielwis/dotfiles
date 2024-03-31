@@ -306,7 +306,7 @@ bindswitch --locked --reload lid:on exec systemctl suspend
 exec --no-startup-id alacritty
 exec gammastep
 exec firefox
-exec discord
+exec discord --enable-features=UseOzonePlatform --ozone-platform=wayland
 exec dunst
 exec swayidle -w \
 	timeout 600 'swaymsg "output * power off"' \
