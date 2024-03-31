@@ -10,9 +10,6 @@ local sources = {
     extra_args = { "-i", "2", "-bn", "-ci" },
   }),
   nls.builtins.diagnostics.shellcheck,
-  -- markdown, yaml, json etc.
-  nls.builtins.formatting.prettierd,
-  nls.builtins.diagnostics.jsonlint,
 }
 
 nls.setup({ sources = sources })
