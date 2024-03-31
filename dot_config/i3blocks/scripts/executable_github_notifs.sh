@@ -3,6 +3,8 @@
 cwd=$(dirname "$0")
 . "$cwd/vars.sh"
 
+url="https://github.com/notifications"
+
 notifs=$(curl -L --silent \
 	-H "Accept: application/vnd.github+json" \
 	-H "Authorization: Bearer $(cat ~/Documents/personal/gh.token)" \
@@ -13,14 +15,10 @@ echo "$NOTIFICATION_ICON $notifs"
 echo "$NOTIFICATION_ICON $notifs"
 
 if [ "$button" = "1" ]; then
-	if [ "$notifs" = "0" ]; then
-		notify-send "No new notifications"
-	else
-		xdg-open https://github.com/notifications
-	fi
+	notify-send "$notifs new notification(s)" "<a href=\"$url\">Click to open in browser</a>"
 elif [ "$button" = "2" ]; then
-	# Just open regardless of notifs using middle click
-	xdg-open https://github.com/notifications
+	# Just open
+	xdg-open $url
 fi
 
 [ "$notifs" = "0" ] && echo "$PASTEL_GREEN" && exit
