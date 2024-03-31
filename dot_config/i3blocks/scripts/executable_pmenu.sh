@@ -27,7 +27,6 @@ if [ "$button" = "1" ]; then
             systemctl reboot
             ;;
         $suspend)
-            swaylock -f
             systemctl suspend
             ;;
         $lock)
