@@ -20,6 +20,7 @@ Plug 'nvim-lualine/lualine.nvim'
 Plug 'nvim-tree/nvim-web-devicons' -- Icons
 
 Plug('nvim-treesitter/nvim-treesitter', { ['do'] = vim.fn[':TSUpdate'] })
+Plug 'nvim-treesitter/nvim-treesitter-textobjects' -- LSP-aware text objects
 
 -- Fuzzy finder for files
 Plug 'nvim-lua/plenary.nvim'
