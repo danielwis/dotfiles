@@ -297,6 +297,11 @@ bar {
 }
 
 
+{{- if eq .chezmoi.hostname "thinkpad" }}
+
+bindswitch --locked --reload lid:on exec systemctl suspend
+{{- end }}
+
 # Autostart
 exec --no-startup-id alacritty
 exec gammastep
