@@ -88,8 +88,8 @@ exec --no-startup-id dex --autostart --environment i3
 
 # --- Volume --- #
 set $refresh_i3blocks pkill -SIGRTMIN+10 i3blocks
-bindsym XF86AudioRaiseVolume exec --no-startup-id ~/.config/i3/volume.sh inc && $refresh_i3blocks
-bindsym XF86AudioLowerVolume exec --no-startup-id ~/.config/i3/volume.sh dec && $refresh_i3blocks
+bindsym XF86AudioRaiseVolume exec --no-startup-id ~/.config/sway/volume.sh inc && $refresh_i3blocks
+bindsym XF86AudioLowerVolume exec --no-startup-id ~/.config/sway/volume.sh dec && $refresh_i3blocks
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3blocks
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3blocks
 
