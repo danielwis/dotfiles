@@ -34,7 +34,7 @@ Plug 'numToStr/Comment.nvim'
 
 -- Tab-/bufferline
 Plug('nvim-tree/nvim-web-devicons') -- For coloured icons
-Plug('akinsho/bufferline.nvim', { ['tag'] = 'v3.*' })
+Plug 'akinsho/bufferline.nvim'
 
 -- Indent prettifyer
 Plug 'lukas-reineke/indent-blankline.nvim'
