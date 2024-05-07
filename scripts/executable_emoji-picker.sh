@@ -1,16 +1,15 @@
 #!/bin/sh
+# shellcheck disable=2317
 # dmoji - dmenu based emoji picker
 
 # GNU cut doesn't grok UTF-8.
-EMOJI=$(sed '1,/^exit/d' $0 | rofi -dmenu -theme simple-green | grep -Po '^[^ ]*')
+EMOJI=$(sed '1,/^exit/d' $0 | tofi --width=50% | grep -Po '^[^ ]*')
 if [ "$EMOJI" ]; then
-	printf %s "$EMOJI" | xclip -i
-	sleep 0.1
-	xdotool click 2
-	exit $?
+	printf %s "$EMOJI" | wl-copy -p
 fi
 # made with: curl -sL https://raw.githubusercontent.com/milesj/emojibase/master/packages/data/en/data.raw.json  | jq -r '.[] | .emoji + "  " + (.label | ascii_upcase) + "  " + (.tags | .? | map("#" + .) | join(" "))'
 exit 1
+
 😀  GRINNING FACE  #face #grin
 😃  GRINNING FACE WITH BIG EYES  #face #mouth #open #smile
 😄  GRINNING FACE WITH SMILING EYES  #eye #face #mouth #open #smile
