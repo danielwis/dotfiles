@@ -4,20 +4,21 @@ HISTSIZE=10000
 SAVEHIST=10000
 
 # Options
-setopt autocd extendedglob # Don't need "cd" to cd
 setopt HIST_IGNORE_DUPS    # Ignore duplicates only if directly after one another
 setopt PROMPT_SUBST        # Turn on command substitution in prompt
 
 # Prompt
-# Backup: PROMPT='%B%n@%M [%F{226}%T%f]'$'\n''[%2~] %F{2}$(git_branch)%f%b'
 PROMPT='%B%F{179}%n@%M%f in %F{9}%2~%f $(git_branch 2 -v)at %F{67}%T%f'$'\n''→%b '
 
 # Vim keybind stuff
 bindkey -v
 bindkey "^[[3~" delete-char
+bindkey "^?" backward-delete-char
 bindkey "^[[H" beginning-of-line
 bindkey "^[[F" end-of-line
-bindkey "^?" backward-delete-char
+# Apparently, tmux gets 1~ and 4~ instead of H and F so add these too
+bindkey "^[[1~" beginning-of-line
+bindkey "^[[4~" end-of-line
 
 # Something?
 zstyle :compinstall filename '/home/daniel/.zshrc'
@@ -52,9 +53,6 @@ alias testmic="arecord -vvv -f dat /dev/null"
 export BROWSER="firefox"
 export EDITOR="nvim"
 export VISUAL="nvim"
-# Jellyfin-webos manual installation
-export LG_WEBOS_TV_SDK_HOME="$HOME/Documents/"
-export WEBOS_CLI_TV="$LG_WEBOS_TV_SDK_HOME/CLI/bin"
 # ... and then PATH
 export PATH="$PATH:$HOME/scripts:$HOME/bin:$WEBOS_CLI_TV:$HOME/.local/bin"
 twmn_path="/home/daniel/Documents/kth/amanuens/en2720/twmn/src/lib/python/"
