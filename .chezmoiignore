@@ -2,6 +2,7 @@ README.md
 
 {{- if eq .chezmoi.hostname "desktop" }}
 .config/i3blocks/scripts/battery.sh
+.config/i3blocks/scripts/bluetooth.sh
 .config/i3blocks/scripts/brightness.sh
 .config/i3blocks/scripts/wifi.sh
 ./scripts/brightness_control.sh
