@@ -62,7 +62,11 @@ Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
 Plug 'f3fora/cmp-spell'
 
+-- Live markdown viewing
 Plug('iamcco/markdown-preview.nvim', { ['do'] = 'cd app && yarn install' })
+
+-- Git integration
+Plug('lewis6991/gitsigns.nvim')
 
 -- Snippets
 Plug 'saadparwaiz1/cmp_luasnip' -- Link autocomplete to snippets
