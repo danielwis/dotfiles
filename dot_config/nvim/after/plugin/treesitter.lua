@@ -26,6 +26,16 @@ require 'nvim-treesitter.configs'.setup {
     additional_vim_regex_highlighting = false,
   },
 
+  incremental_selection = {
+    enable = true,
+    keymaps = {
+      init_selection = '<C-space>',
+      node_incremental = '<C-space>',
+      scope_incremental = '<C-s>',
+      node_decremental = '<C-H>', -- ANSI-speak for <C-BS>
+    },
+  },
+
   -- Almost verbatim copied from this link:
   -- https://ofirgall.github.io/learn-nvim/chapters/05-text-objects.html
   -- TODO: Enable/change stuff that I (want to) use
@@ -34,7 +44,7 @@ require 'nvim-treesitter.configs'.setup {
       enable = true,
       set_jumps = true, -- whether to set jumps in the jumplist
       goto_next_start = {
-        ["]f"] = "@function.outer",
+        ["]m"] = "@function.outer",
         ["]]"] = "@class.outer",
         ["]b"] = "@block.outer",
         ["]a"] = "@parameter.inner",
@@ -46,7 +56,7 @@ require 'nvim-treesitter.configs'.setup {
         ["]A"] = "@parameter.inner",
       },
       goto_previous_start = {
-        ["[f"] = "@function.outer",
+        ["[m"] = "@function.outer",
         ["[["] = "@class.outer",
         ["[b"] = "@block.outer",
         ["[a"] = "@parameter.inner",
@@ -76,5 +86,14 @@ require 'nvim-treesitter.configs'.setup {
         ["ia"] = "@parameter.inner",
       },
     },
+    swap = {
+      enable = true,
+      swap_next = {
+        ['<leader>a'] = '@parameter.inner',
+      },
+      swap_previous = {
+        ['<leader>A'] = '@parameter.inner',
+      },
+    }
   },
 }
