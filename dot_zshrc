@@ -4,8 +4,8 @@ HISTSIZE=10000
 SAVEHIST=10000
 
 # Options
-setopt HIST_IGNORE_DUPS    # Ignore duplicates only if directly after one another
-setopt PROMPT_SUBST        # Turn on command substitution in prompt
+setopt HIST_IGNORE_DUPS # Ignore duplicates only if directly after one another
+setopt PROMPT_SUBST     # Turn on command substitution in prompt
 
 # Prompt
 PROMPT='%B%F{179}%n@%M%f in %F{9}%2~%f $(git_branch 2 -v)at %F{67}%T%f'$'\n''→%b '
@@ -63,37 +63,37 @@ export PYTHONPATH="$PYTHONPATH:$twmn_path:$canvas_path"
 select_any() {
   # See the comment in `select_directory`. The only changes here are on the last line
   find ~ -type d \( \
-      \! -name ".config" \
-      -a -name ".*" \
-      -o -name "google-cloud-sdk" \
-      -o -name "node_modules" \
+    \! -name ".config" \
+    -a -name ".*" \
+    -o -name "google-cloud-sdk" \
+    -o -name "node_modules" \
     \) -prune \
     -o -print | fzf
 }
 select_file() {
   # See the comment in `select_directory`. The only changes here are on the last line
   find ~ -type d \( \
-      \! -name ".config" \
-      -a -name ".*" \
-      -o -name "google-cloud-sdk" \
-      -o -name "node_modules" \
+    \! -name ".config" \
+    -a -name ".*" \
+    -o -name "google-cloud-sdk" \
+    -o -name "node_modules" \
     \) -prune \
     -o -type f -print | fzf --preview "bat --style=numbers --color=always --line-range :500 {}"
 }
 select_directory() {
   # See https://www.theunixschool.com/2012/07/find-command-15-examples-to-exclude.html for more info
   # find all directories in $HOME
-      # where the name is not ".config"
-      # but starts with a "."
-      # or is called one of the following
-      # [...]
-    # and ignore/don't look inside them
-    # print any directories not matched above
+  # where the name is not ".config"
+  # but starts with a "."
+  # or is called one of the following
+  # [...]
+  # and ignore/don't look inside them
+  # print any directories not matched above
   find ~ -type d \( \
-      \! -name ".config" \
-      -a -name ".*" \
-      -o -name "google-cloud-sdk" \
-      -o -name "node_modules" \
+    \! -name ".config" \
+    -a -name ".*" \
+    -o -name "google-cloud-sdk" \
+    -o -name "node_modules" \
     \) -prune \
     -o -type d -print | fzf
 }
@@ -138,6 +138,38 @@ move() {
   fi
 }
 export move
+
+# Python venv helper
+venv() {
+  venv_home="$HOME/.venvs"
+
+  case $1 in
+    create)
+      venv_dir="$venv_home/$2"
+      python -m venv "$venv_dir"
+      echo "Created virtual environment in $venv_dir"
+      ;;
+    list)
+      venvs=$(find "$venv_home" -maxdepth 1 -mindepth 1 -type d | awk -F'/' '{print $NF}')
+      if [ -n "$venvs" ]; then
+        echo "$venvs"
+      else
+        echo "No virtual environments found"
+      fi
+      ;;
+    source|set|activate)
+      venv_dir="$venv_home/$2"
+      src="$venv_dir/bin/activate"
+      if [ -f "$src" ]; then
+        . "$src"
+      else
+        echo "No virtualenv found for $2"
+      fi
+      ;;
+    *) echo "Unknown command: '$1'" ;;
+  esac
+}
+export venv
 
 # Syntax highlighting
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
