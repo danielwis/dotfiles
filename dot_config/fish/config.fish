@@ -1,7 +1,6 @@
 if status is-interactive
     # Commands to run in interactive sessions
 
-    fish_prompt # Print prompt
     fish_vi_key_bindings # Activate vim bindings
 
     # Bind <C-Space> to complete entire suggestion
