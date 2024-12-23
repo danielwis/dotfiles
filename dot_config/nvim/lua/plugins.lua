@@ -41,7 +41,6 @@ Plug 'lukas-reineke/indent-blankline.nvim'
 
 -- LSP Support
 Plug 'neovim/nvim-lspconfig'
-Plug 'mfussenegger/nvim-jdtls' -- Temporary, for Java
 
 -- LSP context hints in winbar
 Plug 'SmiteshP/nvim-navic'
