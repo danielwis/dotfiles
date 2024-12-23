@@ -18,4 +18,7 @@ if status is-interactive
     set -U VISUAL nvim
 
     set_colours
+
+    # fzf goodness
+    fzf --fish | source
 end
