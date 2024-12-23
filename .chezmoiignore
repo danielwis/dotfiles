@@ -5,5 +5,5 @@ README.md
 .config/i3blocks/scripts/bluetooth.sh
 .config/i3blocks/scripts/brightness.sh
 .config/i3blocks/scripts/wifi.sh
-./scripts/brightness_control.sh
+.config/sway/brightness.sh
 {{ end -}}

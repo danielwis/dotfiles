@@ -13,8 +13,9 @@ curr_vol=$(amixer sget Master | awk -F"[][%]" '/Left:/ {print $2}')
 
 case "$1" in
   "inc")
-    [ "$curr_vol" -ge "$vol_threshold" ] && exit 1
-    pactl set-sink-volume @DEFAULT_SINK@ +5% && pkill -SIGRTMIN+10 i3blocks
+    if [ "$curr_vol" -lt "$vol_threshold" ]; then
+      pactl set-sink-volume @DEFAULT_SINK@ +5% && pkill -SIGRTMIN+10 i3blocks
+    fi
     ;;
   "dec")
     pactl set-sink-volume @DEFAULT_SINK@ -5% && pkill -SIGRTMIN+10 i3blocks
@@ -23,3 +24,13 @@ case "$1" in
     exit 1
     ;;
 esac
+
+new_vol=$(amixer sget Master | awk -F"[][%]" '/Left:/ {print $2}')
+
+if [ "$new_vol" -gt "50" ]; then
+  vol_icon="󰕾"
+else
+  vol_icon="󰖀"
+fi
+
+notify-send -h string:x-dunst-stack-tag:volume -h "int:value:$new_vol" "$vol_icon Volume: $new_vol %"

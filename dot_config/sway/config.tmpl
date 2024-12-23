@@ -95,8 +95,8 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 
 {{- if eq .chezmoi.hostname "thinkpad" }}
 # --- Brightness --- #
-bindsym XF86MonBrightnessDown exec --no-startup-id ~/scripts/brightness_control.sh - && pkill -SIGRTMIN+10 i3blocks && $refresh_i3status
-bindsym XF86MonBrightnessUp exec --no-startup-id ~/scripts/brightness_control.sh + && pkill -SIGRTMIN+10 i3blocks && $refresh_i3status
+bindsym XF86MonBrightnessDown exec --no-startup-id ~/.config/sway/brightness.sh - && pkill -SIGRTMIN+10 i3blocks && $refresh_i3status
+bindsym XF86MonBrightnessUp exec --no-startup-id ~/.config/sway/brightness.sh + && pkill -SIGRTMIN+10 i3blocks && $refresh_i3status
 {{- end }}
 
 # Use $mod to drag floating windows

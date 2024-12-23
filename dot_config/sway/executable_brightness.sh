@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # A script to change the brightness through terminal commands. Used for binding
 # brightness keys properly in i3.
 
@@ -22,5 +24,10 @@ NEW_BRIGHTNESS=$CURR_BRIGHTNESS; # Failsafe - if smth crashes, do nothing
 [ "$NEW_BRIGHTNESS" -gt "$MAX_BRIGHTNESS" ] && NEW_BRIGHTNESS=$MAX_BRIGHTNESS
 
 echo $NEW_BRIGHTNESS > /sys/class/backlight/intel_backlight/brightness
+
+# Notifications
+brightness_icon=""
+brightness_pct=$(expr 100 \* "$NEW_BRIGHTNESS" / "$MAX_BRIGHTNESS")
+notify-send -h string:x-dunst-stack-tag:volume -h "int:value:$brightness_pct" "$brightness_icon Brightness: $brightness_pct %"
 
 exit 0

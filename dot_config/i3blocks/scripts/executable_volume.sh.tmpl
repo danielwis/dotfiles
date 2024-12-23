@@ -9,9 +9,9 @@ if [ "$button" = "1" ]; then
   pactl set-sink-mute @DEFAULT_SINK@ toggle
   SOUND_STATUS=$(amixer get Master | grep '\[o' | awk '{print $6}' | sed 's/\]//' | sed 's/\[//' | head -n 1)
   if [ "$SOUND_STATUS" = "off" ]; then
-    notify-send "Volume muted"
+    notify-send -h string:x-dunst-stack-tag:volume "Volume muted"
   else
-    notify-send "Volume unmuted"
+    notify-send -h string:x-dunst-stack-tag:volume "Volume unmuted"
   fi
 fi
 
