@@ -14,8 +14,8 @@ if status is-interactive
     bind -M default \cw backward-kill-word
     bind -M insert \cw backward-kill-word
 
-    set -U EDITOR nvim
-    set -U VISUAL nvim
+    set -gx EDITOR nvim
+    set -gx VISUAL nvim
 
     set_colours
 

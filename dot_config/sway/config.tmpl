@@ -4,8 +4,8 @@ set $mod Mod4
 # --- BASICS --- #
 {{ if eq .chezmoi.hostname "desktop" -}}
 # Force monitors to be ordered correctly (locking scrambles them otherwise)
-output HDMI-A-1 pos 0 0 res 1920x1080
-output HDMI-A-2 pos 1920 0 res 1920x1080
+output HDMI-A-2 pos 0 0 res 1920x1080
+output HDMI-A-1 pos 1920 0 res 1920x1080
 {{- else if eq .chezmoi.hostname "thinkpad" -}}
 # Fix touchpad
 input type:touchpad {
