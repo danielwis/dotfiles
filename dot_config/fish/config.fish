@@ -4,8 +4,8 @@ if status is-interactive
     fish_vi_key_bindings # Activate vim bindings
 
     # Bind <C-Space> to complete entire suggestion
-    bind -M default -k nul forward-char
-    bind -M insert -k nul forward-char
+    bind -M default ctrl-space forward-char
+    bind -M insert ctrl-space forward-char
 
     # Bind <Alt-Space> to complete one word at a time
     bind -M default \e\x20 forward-word
@@ -14,8 +14,8 @@ if status is-interactive
     bind -M default \cw backward-kill-word
     bind -M insert \cw backward-kill-word
 
-    set -gx EDITOR nvim
-    set -gx VISUAL nvim
+    set -Ux EDITOR nvim
+    set -Ux VISUAL nvim
 
     set_colours
 
