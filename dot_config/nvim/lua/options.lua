@@ -42,6 +42,7 @@ vim.opt.cursorlineopt = "number"
 
 vim.opt.updatetime = 50
 
+
 ---------------
 --- THEMING ---
 ---------------
