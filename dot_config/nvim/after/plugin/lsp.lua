@@ -47,42 +47,23 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end
 })
 
--- Set up lspconfig.
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
-local servers = { 'pyright', 'ruff', 'rust_analyzer', 'lua_ls', 'clangd', 'denols', 'texlab' }
-local server_settings = {
-    ["rust_analyzer"] = {
-        ['rust-analyzer'] = { check = { command = "clippy" } },
-    },
-    ["lua_ls"] = {
-        Lua = {
-            diagnostics = {
-                globals = { 'vim', 'use' },
-                disable = { 'undefined-global' },
-            },
-            hint = {
-                enable = true,
-            },
-        },
+capabilities.textDocument = {
+    semanticTokens = {
+        multilineTokenSupport = true,
     }
 }
-local filetypes = {
-    ['denols'] = {
-        'javascript',
-        'javascriptreact',
-        'javascript.jsx',
-        'typescript',
-        'typescriptreact',
-        'typescript.tsx',
-        'markdown',
-        'json',
-    },
-}
+vim.lsp.config('*', {
+    capabilities = capabilities,
+    root_markers = { '.git' },
+})
 
-for _, lsp in pairs(servers) do
-    lspconfig[lsp].setup {
-        capabilities = capabilities,
-        settings = server_settings[lsp],
-        filetypes = filetypes[lsp],
-    }
-end
+vim.lsp.enable({
+    "clangd",
+    "pyright",
+    "ruff",
+    "denols",
+    "rust_analyzer",
+    "lua_ls",
+    "texlab"
+})
