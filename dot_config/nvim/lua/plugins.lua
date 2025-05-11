@@ -13,7 +13,6 @@ Plug 'romainl/vim-cool'                 -- No more lingering hl after search
 Plug 'inkarkat/vim-ReplaceWithRegister' -- Replace motion with register without intermediate deletion
 Plug 'echasnovski/mini.ai'              -- Extend `i` and `a` text objects
 
-Plug 'zegervdv/nrpattern.nvim'          -- Extend <C-x> and <C-a> functionality to custom patterns etc
 Plug 'rcarriga/nvim-notify'             -- Notifications
 
 Plug 'nvim-lualine/lualine.nvim'
