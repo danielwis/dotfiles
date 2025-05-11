@@ -34,8 +34,7 @@ input {
 {{- end }}
 }
 
-
-{{- if eq .chezmoi.hostname "thinkpad" -}}
+{{ if eq .chezmoi.hostname "thinkpad" -}}
 # Get some nice touchpad stuff
 bindgesture swipe:3:left workspace next
 bindgesture swipe:3:right workspace prev
