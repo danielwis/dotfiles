@@ -31,7 +31,11 @@ else
 fi
 
 if [ "$button" = "1" ]; then
-  notify-send "$notifs new notification(s)" "<a href=\"$url\">Click to open in browser</a>"
+  if [ -n "$notifs" ]; then
+    notify-send "$notifs new notification(s)" "<a href=\"$url\">Click to open in browser</a>"
+  else
+    notify-send -i "$HOME/.config/dunst/exclamation-solid.png" "Unable to obtain notification info"
+  fi
 elif [ "$button" = "2" ]; then
   # Just open
   xdg-open $url
