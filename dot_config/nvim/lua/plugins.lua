@@ -49,9 +49,6 @@ Plug 'SmiteshP/nvim-navic'
 Plug "SmiteshP/nvim-navbuddy"
 Plug "MunifTanjim/nui.nvim" -- UI library dependency for the above
 
--- Allow external (non-LSP) programs to hook into LSP API
-Plug 'jose-elias-alvarez/null-ls.nvim'
-
 -- Autocompletion and its sources
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-nvim-lsp'
