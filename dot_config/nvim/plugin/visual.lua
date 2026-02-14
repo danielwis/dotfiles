@@ -39,8 +39,6 @@ require("nvim-navic").setup {
     safe_output = true
 }
 
-vim.keymap.set("n", "<leader>ss", "<cmd>FzfLua lsp_document_symbols<cr>");
-
 --
 -- Statusline (bottom)
 --

@@ -135,6 +135,7 @@ require("fzf-lua")
 map("n", "<leader>sf", FzfLua.files)
 map("n", "<leader>sg", FzfLua.live_grep)
 map("n", "<leader>sr", FzfLua.resume)
+map("n", "<leader>ss", FzfLua.lsp_document_symbols)
 
 -- Make current file executable (for scripts etc)
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
