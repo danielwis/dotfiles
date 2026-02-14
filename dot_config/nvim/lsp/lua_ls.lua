@@ -12,16 +12,15 @@ return {
         '.git',
     },
     settings = {
-        ["lua_ls"] = {
-            Lua = {
-                diagnostics = {
-                    globals = { 'vim', 'use' },
-                    disable = { 'undefined-global' },
-                },
-                hint = {
-                    enable = true,
-                },
+        Lua = {
+            diagnostics = {
+                globals = { 'vim' },
+                disable = { 'undefined-global' },
             },
-        }
+            hint = {
+                enable = true,
+            },
+        },
+
     }
 }
